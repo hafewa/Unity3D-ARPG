@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody playerRigidbody;
 	private PlayerData playerData;
 
+	
 
 	KeyCode forward = KeyCode.W;
 	KeyCode right = KeyCode.D;
@@ -21,12 +22,16 @@ public class PlayerController : MonoBehaviour {
 		playerData = GetComponent<PlayerData>();
 
 		playerCamera = GetComponentInChildren<Camera>();
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		playerInput();
+		turnPlayer();
+		turnCamera();
 	}
 
 	//Player input
@@ -37,45 +42,22 @@ public class PlayerController : MonoBehaviour {
 		bool bRight = Input.GetKey(right);
 		bool bLeft = Input.GetKey(left);
 
-		if (bForward && bRight)
+
+		if (bForward)
 		{
-			playerRigidbody.velocity =
-				new Vector3(1,0,1) * playerData.MovementSpeed * Time.deltaTime;
-		}
-		else if (bForward && bLeft)
-		{
-			playerRigidbody.velocity =
-				new Vector3(-1,0,1) * playerData.MovementSpeed * Time.deltaTime;
-		}
-		else if (bBack && bRight)
-		{
-			playerRigidbody.velocity =
-				new Vector3(1,0,-1) * playerData.MovementSpeed * Time.deltaTime;
-		}
-		else if (bBack && bLeft)
-		{
-			playerRigidbody.velocity =
-				new Vector3(-1,0,-1) * playerData.MovementSpeed * Time.deltaTime;
-		}
-		else if (bForward)
-		{
+			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y,1);
+
 			playerRigidbody.velocity = 
-				new Vector3(0,0,1) * playerData.MovementSpeed * Time.deltaTime;
+				new Vector3(norm.x, 0, -norm.y) 
+				* playerData.MovementSpeed * Time.deltaTime;
 		}
 		else if (bBack)
 		{
+			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y - 180,1);
+
 			playerRigidbody.velocity = 
-				new Vector3(0,0,-1) * playerData.MovementSpeed * Time.deltaTime;
-		}
-		else if (bRight)
-		{
-			playerRigidbody.velocity = 
-				new Vector3(1,0,0) * playerData.MovementSpeed * Time.deltaTime;
-		}
-		else if (bLeft)
-		{
-			playerRigidbody.velocity = 
-				new Vector3(-1,0,0) * playerData.MovementSpeed * Time.deltaTime;
+				new Vector3(norm.x, 0, -norm.y) * 
+				playerData.MovementSpeed * Time.deltaTime;
 		}
 		else
 		{
@@ -86,5 +68,26 @@ public class PlayerController : MonoBehaviour {
 		{
 			playerRigidbody.velocity *= 2;
 		}
+
+		if (Input.GetKey(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
+	}
+
+	void turnPlayer()
+	{
+		Vector3 newRotation = transform.eulerAngles;
+		newRotation.y += Input.GetAxis("Mouse X") * playerData.mouseSensativityX;
+
+		transform.eulerAngles = newRotation;
+	}
+
+	void turnCamera()
+	{
+		Vector3 newRotation = playerCamera.transform.eulerAngles;
+		newRotation.x += Input.GetAxis("Mouse Y") * playerData.mouseSensativityY * playerData.isCameraInverted;
+
+		playerCamera.transform.eulerAngles = newRotation;
 	}
 }
