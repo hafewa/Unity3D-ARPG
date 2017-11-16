@@ -6,7 +6,9 @@ public class PlayerData : MonoBehaviour
 {
 
 	[SerializeField]
-	private float _movementSpeed = 1;
+	private float _movementSpeed = 0.5f;
+
+	public float jumpForce = 100;
 
 	public float mouseSensativityX = 5f;
 	public float mouseSensativityY = 1f;

@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
 	KeyCode left = KeyCode.A;
 	KeyCode back = KeyCode.S;
 
+	bool isJumping = false;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -30,8 +32,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () 
 	{
 		playerInput();
-		turnPlayer();
-		turnCamera();
+
+		//Jumping
+		if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+		{
+			playerRigidbody.AddForce(new Vector3(0,playerData.jumpForce,0));
+			isJumping = true;
+		}
 	}
 
 	//Player input
@@ -42,37 +49,51 @@ public class PlayerController : MonoBehaviour {
 		bool bRight = Input.GetKey(right);
 		bool bLeft = Input.GetKey(left);
 
+		turnPlayer();
+		turnCamera();
 
+
+		//Forward and back movement
 		if (bForward)
 		{
 			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y,1);
-
-			playerRigidbody.velocity = 
-				new Vector3(norm.x, 0, -norm.y) 
-				* playerData.MovementSpeed * Time.deltaTime;
+			applyMovementForce(norm);
 		}
 		else if (bBack)
 		{
 			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y - 180,1);
-
-			playerRigidbody.velocity = 
-				new Vector3(norm.x, 0, -norm.y) * 
-				playerData.MovementSpeed * Time.deltaTime;
+			applyMovementForce(norm);
 		}
-		else
+		//Strafeing movement
+		else if(bRight)
 		{
-			playerRigidbody.velocity = new Vector3();
+			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y + 90,1);
+			applyMovementForce(norm);
+		}
+		else if (bLeft)
+		{
+			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y - 90,1);
+			applyMovementForce(norm);
 		}
 
-		if (Input.GetKey(KeyCode.LeftShift))
-		{
-			playerRigidbody.velocity *= 2;
-		}
+		//if (Input.GetKey(KeyCode.LeftShift))
+		//{
+		//	playerRigidbody.velocity *= 2;
+		//}
 
 		if (Input.GetKey(KeyCode.Escape))
 		{
 			Application.Quit();
 		}
+	}
+
+	void applyMovementForce(Vector3 norm)
+	{
+			Vector3 newVel = new Vector3(norm.x, 0, -norm.y) * 
+								playerData.MovementSpeed * Time.deltaTime;
+
+			//playerRigidbody.velocity += newVel;
+			playerRigidbody.AddForce(newVel);
 	}
 
 	void turnPlayer()
@@ -89,5 +110,18 @@ public class PlayerController : MonoBehaviour {
 		newRotation.x += Input.GetAxis("Mouse Y") * playerData.mouseSensativityY * playerData.isCameraInverted;
 
 		playerCamera.transform.eulerAngles = newRotation;
+	}
+
+	/// <summary>
+	/// OnCollisionEnter is called when this collider/rigidbody has begun
+	/// touching another rigidbody/collider.
+	/// </summary>
+	/// <param name="other">The Collision data associated with this collision.</param>
+	void OnCollisionEnter(Collision other)
+	{
+		if(other.gameObject.tag == "Ground")
+		{
+			isJumping = false;
+		}
 	}
 }
