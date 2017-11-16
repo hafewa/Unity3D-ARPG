@@ -8,6 +8,14 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody playerRigidbody;
 	private PlayerData playerData;
 
+	public GameObject attackCollider;
+
+
+	bool isAttacking = false;
+	float attackTimer = 0;
+	float attackTime = 0.5f;
+	
+
 	
 
 	KeyCode forward = KeyCode.W;
@@ -26,6 +34,8 @@ public class PlayerController : MonoBehaviour {
 		playerCamera = GetComponentInChildren<Camera>();
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+
+		attackCollider.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -38,6 +48,25 @@ public class PlayerController : MonoBehaviour {
 		{
 			playerRigidbody.AddForce(new Vector3(0,playerData.jumpForce,0));
 			isJumping = true;
+		}
+
+		//Attack
+		if (Input.GetMouseButtonDown(0))
+		{
+			attackCollider.SetActive(true);
+			isAttacking = true;
+		}
+
+		if(isAttacking)
+		{
+			attackTimer += Time.deltaTime;
+
+			if (attackTimer >= attackTime)
+			{
+				attackTimer = 0;
+				isAttacking = false;
+				attackCollider.SetActive(false);
+			}
 		}
 	}
 
