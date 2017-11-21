@@ -4,162 +4,116 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	private Camera playerCamera;
-	private Rigidbody playerRigidbody;
-	private PlayerData playerData;
+	public GameObject camPoint;
+	public GameObject GFX;
+	Transform GFXTransform;
 
-	public GameObject attackCollider;
-
-
-	bool isAttacking = false;
-	float attackTimer = 0;
-	float attackTime = 0.5f;
+	//PlayerInfo
 	
-
+	float groundCheckDistance = 0.1f;
 	
+	bool isGrounded;
+	
+	Rigidbody playerRigidbody;
 
-	KeyCode forward = KeyCode.W;
-	KeyCode right = KeyCode.D;
-	KeyCode left = KeyCode.A;
-	KeyCode back = KeyCode.S;
+	PlayerData playerData;
 
-	bool isJumping = false;
+	//Keys
 
 	// Use this for initialization
 	void Start () 
 	{
+		GFXTransform = GFX.GetComponent<Transform>();
 		playerRigidbody = GetComponent<Rigidbody>();
 		playerData = GetComponent<PlayerData>();
-
-		playerCamera = GetComponentInChildren<Camera>();
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-
-		attackCollider.SetActive(false);
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
-        playerInput();
-        Jump();
-        Attack();
-    }
-
-    private void Jump()
-    {
-        //Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
-        {
-            playerRigidbody.AddForce(new Vector3(0, playerData.jumpForce, 0));
-            isJumping = true;
-        }
-    }
-
-    private void Attack()
-    {
-
-        //Attack
-        if (Input.GetMouseButtonDown(0))
-        {
-            attackCollider.SetActive(true);
-            isAttacking = true;
-        }
-
-        if (isAttacking)
-        {
-            attackTimer += Time.deltaTime;
-
-            if (attackTimer >= attackTime)
-            {
-                attackTimer = 0;
-                isAttacking = false;
-                attackCollider.SetActive(false);
-            }
-        }
-    }
-
-    //Player input
-    void playerInput()
+	void Update () 
 	{
-		bool bForward = Input.GetKey(forward);
-		bool bBack = Input.GetKey(back);
-		bool bRight = Input.GetKey(right);
-		bool bLeft = Input.GetKey(left);
+		Movement();
 
-		turnPlayer();
-		turnCamera();
-
-
-		//Forward and back movement
-		if (bForward)
-		{
-			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y,1);
-			applyMovementForce(norm);
-		}
-		else if (bBack)
-		{
-			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y - 180,1);
-			applyMovementForce(norm);
-		}
-		//Strafeing movement
-		else if(bRight)
-		{
-			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y + 90,1);
-			applyMovementForce(norm);
-		}
-		else if (bLeft)
-		{
-			Vector2 norm = MathG.DegreeToVector(transform.eulerAngles.y - 90,1);
-			applyMovementForce(norm);
-		}
-
-		//if (Input.GetKey(KeyCode.LeftShift))
-		//{
-		//	playerRigidbody.velocity *= 2;
-		//}
-
-		if (Input.GetKey(KeyCode.Escape))
+		if(Input.GetKey(KeyCode.Escape))
 		{
 			Application.Quit();
 		}
 	}
 
-	void applyMovementForce(Vector3 norm)
+	void Movement()
 	{
-			Vector3 newVel = new Vector3(norm.x, 0, -norm.y) * 
-								playerData.MovementSpeed * Time.deltaTime;
+		bool bForward = Input.GetKey(playerData.forward);
+		bool bBack = Input.GetKey(playerData.back);
+		bool bRight = Input.GetKey(playerData.right);
+		bool bLeft = Input.GetKey(playerData.left);
 
-			//playerRigidbody.velocity += newVel;
-			playerRigidbody.AddForce(newVel);
+		if (bForward)
+		{
+			SetGFXRotation();
+			Vector2 norm = MathG.DegreeToVector(camPoint.transform.eulerAngles.y,1);
+			MoveByVelocity(norm);
+		}
+		else if(bBack)
+		{
+			SetGFXRotation();
+			Vector2 norm = MathG.DegreeToVector(camPoint.transform.eulerAngles.y - 180,1);
+			MoveByVelocity(norm);
+		}
+		else if(bRight)
+		{
+			SetGFXRotation();
+			Vector2 norm = MathG.DegreeToVector(camPoint.transform.eulerAngles.y + 90,1);
+			MoveByVelocity(norm);
+
+		}
+		else if(bLeft)
+		{
+			SetGFXRotation();
+			Vector2 norm = MathG.DegreeToVector(camPoint.transform.eulerAngles.y - 90,1);
+			MoveByVelocity(norm);
+		}
+		else
+		{
+			playerRigidbody.velocity = new Vector3(0,playerRigidbody.velocity.y,0);
+		}
+
+		bool bJump = Input.GetKey(playerData.jump);
+		if (bJump && isGrounded)
+		{
+			playerRigidbody.AddForce(new Vector3(0,playerData.jumpForce,0));
+			isGrounded = false;
+		}
+
+		bool bSprint = Input.GetKey(playerData.sprint);
+		if(bSprint)
+		{
+			Vector3 newVel = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
+			newVel *= playerData.SprintMultiplier;
+			newVel.y = playerRigidbody.velocity.y;
+			playerRigidbody.velocity = newVel;
+		}
 	}
 
-	void turnPlayer()
+	void SetGFXRotation()
 	{
-		Vector3 newRotation = transform.eulerAngles;
-		newRotation.y += Input.GetAxis("Mouse X") * playerData.mouseSensativityX;
-
-		transform.eulerAngles = newRotation;
+		//TODO Smooth out this transition
+		Vector3 newGFXRotation = GFXTransform.eulerAngles;
+		newGFXRotation.y = camPoint.GetComponent<Transform>().eulerAngles.y;
+		GFXTransform.eulerAngles = newGFXRotation;
 	}
 
-	void turnCamera()
+	void MoveByVelocity(Vector3 norm)
 	{
-		Vector3 newRotation = playerCamera.transform.eulerAngles;
-		newRotation.x += Input.GetAxis("Mouse Y") * playerData.mouseSensativityY * playerData.isCameraInverted;
-
-		playerCamera.transform.eulerAngles = newRotation;
+		Vector3 newVel = new Vector3(norm.x, 0, -norm.y) * playerData.MovementSpeed * Time.deltaTime;
+		newVel.y = playerRigidbody.velocity.y;
+		playerRigidbody.velocity = newVel;
 	}
 
-	/// <summary>
-	/// OnCollisionEnter is called when this collider/rigidbody has begun
-	/// touching another rigidbody/collider.
-	/// </summary>
-	/// <param name="other">The Collision data associated with this collision.</param>
 	void OnCollisionEnter(Collision other)
 	{
 		if(other.gameObject.tag == "Ground")
 		{
-			isJumping = false;
+			isGrounded = true;
 		}
 	}
 }
+
