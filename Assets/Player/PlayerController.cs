@@ -39,39 +39,48 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
-	{
-		playerInput();
+	void Update ()
+    {
+        playerInput();
+        Jump();
+        Attack();
+    }
 
-		//Jumping
-		if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
-		{
-			playerRigidbody.AddForce(new Vector3(0,playerData.jumpForce,0));
-			isJumping = true;
-		}
+    private void Jump()
+    {
+        //Jumping
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        {
+            playerRigidbody.AddForce(new Vector3(0, playerData.jumpForce, 0));
+            isJumping = true;
+        }
+    }
 
-		//Attack
-		if (Input.GetMouseButtonDown(0))
-		{
-			attackCollider.SetActive(true);
-			isAttacking = true;
-		}
+    private void Attack()
+    {
 
-		if(isAttacking)
-		{
-			attackTimer += Time.deltaTime;
+        //Attack
+        if (Input.GetMouseButtonDown(0))
+        {
+            attackCollider.SetActive(true);
+            isAttacking = true;
+        }
 
-			if (attackTimer >= attackTime)
-			{
-				attackTimer = 0;
-				isAttacking = false;
-				attackCollider.SetActive(false);
-			}
-		}
-	}
+        if (isAttacking)
+        {
+            attackTimer += Time.deltaTime;
 
-	//Player input
-	void playerInput()
+            if (attackTimer >= attackTime)
+            {
+                attackTimer = 0;
+                isAttacking = false;
+                attackCollider.SetActive(false);
+            }
+        }
+    }
+
+    //Player input
+    void playerInput()
 	{
 		bool bForward = Input.GetKey(forward);
 		bool bBack = Input.GetKey(back);
