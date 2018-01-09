@@ -2,38 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MathG
+static public class MathG
 {
-    static public float Distance(Vector2 v1, Vector2 v2)
+    static public float Distance2D(Vector2 v1, Vector2 v2)
     {
         return Mathf.Sqrt(Mathf.Pow(v2.x - v1.x, 2) + Mathf.Pow(v2.y - v1.y, 2));
     }
 
-    static public float Magnitude(Vector2 v)
+    static public float Magnitude2D(Vector2 v)
     {
         return Mathf.Sqrt((Mathf.Pow(v.x, 2)) + (Mathf.Pow(v.y, 2)));
     }
 
-	static public float Magnitude(Vector3 v)
-	{
-		return Mathf.Sqrt((Mathf.Pow(v.x, 2)) + (Mathf.Pow(v.y, 2)) + (Mathf.Pow(v.z, 2)));
-	}
-
-    static public Vector2 NormalVector(Vector2 v)
+    static public Vector2 NormalVector2D(Vector2 v)
     {
         if(v.x == 0 && v.y == 0)
         {
             return new Vector2(0,0);
         }
 
-        v = v / Magnitude(v);
+        v = v / Magnitude2D(v);
         return v;
     }
-
-	static public Vector3 NormalVector(Vector3 v)
-	{
-		return v / Magnitude(v);
-	}
 
     static public float cubicBezier(float t,float p0,float p1, float p2, float p3)
     {
@@ -42,12 +32,12 @@ public class MathG
 
     //d = degrees
     //m = magnitude of the resulting vector
-    static public Vector2 DegreeToVector(float d, float m)
+    static public Vector2 DegreeToVector2D(float d, float m)
     {
         return new Vector2(m * Mathf.Cos(d * Mathf.Deg2Rad), m * Mathf.Sin(d * Mathf.Deg2Rad));
     }
 
-    static public float VectorToDegrees(Vector2 vec)
+    static public float VectorToDegrees2D(Vector2 vec)
     {
         return Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
     }
