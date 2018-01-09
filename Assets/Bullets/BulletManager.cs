@@ -41,8 +41,8 @@ public class BulletManager : MonoBehaviour {
         GameObject bull = getNextBullet();
         if ( bull != null)
         {
-            Vector3 velocity = MathG.NormalVector2D( new Vector2(pos.x - gameObject.transform.position.x, pos.z - gameObject.transform.position.z));
-            bull.GetComponent<Bullet>().Reset(gameObject.transform.position, new Vector3(velocity.x, 0, velocity.y));
+            Vector3 velocity = MathG.NormalVector( pos - transform.position);
+            bull.GetComponent<Bullet>().Reset(gameObject.transform.position, velocity);
             canShoot = false;
             timer = 0;
             return true;

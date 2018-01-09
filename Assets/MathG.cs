@@ -4,24 +4,44 @@ using UnityEngine;
 
 static public class MathG
 {
-    static public float Distance2D(Vector2 v1, Vector2 v2)
+    static public float Distance(Vector2 v1, Vector2 v2)
     {
         return Mathf.Sqrt(Mathf.Pow(v2.x - v1.x, 2) + Mathf.Pow(v2.y - v1.y, 2));
     }
 
-    static public float Magnitude2D(Vector2 v)
+    static public float Distance(Vector3 v1, Vector3 v2)
+    {
+        return Mathf.Sqrt(Mathf.Pow(v2.x - v1.x, 2) + Mathf.Pow(v2.y - v1.y, 2) + Mathf.Pow(v2.z - v1.z, 2));
+    }
+
+    static public float Magnitude(Vector2 v)
     {
         return Mathf.Sqrt((Mathf.Pow(v.x, 2)) + (Mathf.Pow(v.y, 2)));
     }
+    static public float Magnitude(Vector3 v)
+    {
+        return Mathf.Sqrt((Mathf.Pow(v.x, 2)) + (Mathf.Pow(v.y, 2)) + (Mathf.Pow(v.z, 2)));
+    }
 
-    static public Vector2 NormalVector2D(Vector2 v)
+    static public Vector2 NormalVector(Vector2 v)
     {
         if(v.x == 0 && v.y == 0)
         {
             return new Vector2(0,0);
         }
 
-        v = v / Magnitude2D(v);
+        v = v / Magnitude(v);
+        return v;
+    }
+
+    static public Vector3 NormalVector(Vector3 v)
+    {
+        if(v.x == 0 && v.y == 0 && v.z == 0)
+        {
+            return new Vector3(0,0);
+        }
+
+        v = v / Magnitude(v);
         return v;
     }
 

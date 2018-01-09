@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	public int cameraMult;
 	public GameObject camPoint;
 	public GameObject GFX;
 	Transform GFXTransform;
@@ -21,11 +22,16 @@ public class PlayerController : MonoBehaviour {
 
 	public float gravity;
 
-
-	public GameObject shotPoint;
+	public LayerMask aimMask;
+	public new GameObject camera;
 
 	public Vector3 velocity = Vector3.zero;
 	//Keys
+
+	bool bForward;
+	bool bBack;
+	bool bRight;
+	bool bLeft;
 
 	// Use this for initialization
 	void Start () 
@@ -35,6 +41,8 @@ public class PlayerController : MonoBehaviour {
 		playerData = GetComponent<PlayerData>();
 		charController = GetComponent<CharacterController>();
 		bulletManager = GetComponentInChildren<BulletManager>();
+
+		Cursor.lockState = CursorLockMode.Locked;
 		
 	}
 	
@@ -45,7 +53,18 @@ public class PlayerController : MonoBehaviour {
 		
 		if(Input.GetButton("Fire1"))
 		{
-			bulletManager.Shoot(shotPoint.transform.position);
+			//Debug.DrawRay(camera.transform.position,camera.transform.forward * 100,Color.red,1);
+			RaycastHit hit; 
+			if (Physics.Raycast(camera.transform.position,camera.transform.forward,out hit,100, aimMask))
+			{
+				bulletManager.Shoot(hit.point);
+			}
+			else
+			{
+				bulletManager.Shoot(camera.transform.forward * cameraMult);
+			}
+			//(camera.transform.position, camera.transform.right,100,aimMask);
+			//SetGFXRotation();
 		}
 
 		if(Input.GetKey(KeyCode.Escape))
@@ -53,14 +72,16 @@ public class PlayerController : MonoBehaviour {
 			Application.Quit();
 		}
 	}
+	void Update()
+	{
+		bForward = Input.GetKey(playerData.forward);
+		bBack = Input.GetKey(playerData.back);
+		bRight = Input.GetKey(playerData.right);
+		bLeft = Input.GetKey(playerData.left);
+	}
 
 	void Movement()
-	{
-		bool bForward = Input.GetKey(playerData.forward);
-		bool bBack = Input.GetKey(playerData.back);
-		bool bRight = Input.GetKey(playerData.right);
-		bool bLeft = Input.GetKey(playerData.left);
-		
+	{	
 		//print(charController.isGrounded);
 
 		velocity.y += -gravity;
@@ -111,6 +132,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		charController.Move(velocity * Time.fixedDeltaTime);
+		if(charController.isGrounded) {velocity.y = 0;}
 	}
 
 	void SetGFXRotation()
@@ -126,6 +148,11 @@ public class PlayerController : MonoBehaviour {
 		Vector3 newVel = new Vector3(norm.x, 0, -norm.y) * playerData.MovementSpeed;
 		newVel.y = velocity.y;
 		velocity = newVel;
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+
 	}
 }
 
