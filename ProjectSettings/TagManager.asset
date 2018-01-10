@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - PBullet
+  - EBullet
   layers:
   - Default
   - TransparentFX

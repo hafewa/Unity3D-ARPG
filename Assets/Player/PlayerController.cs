@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	
 	//Rigidbody playerRigidbody;
 	CharacterController charController;
+	Animator animator;
 
 	PlayerData playerData;
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 	bool bBack;
 	bool bRight;
 	bool bLeft;
+	bool bJump;
 
 	// Use this for initialization
 	void Start () 
@@ -116,7 +118,7 @@ public class PlayerController : MonoBehaviour {
 			velocity = new Vector3(0,velocity.y,0);
 		}
 
-		bool bJump = Input.GetKey(playerData.jump);
+		bJump = Input.GetKey(playerData.jump);
 		if (bJump && charController.isGrounded)
 		{
 			velocity.y = playerData.jumpForce;
@@ -152,7 +154,6 @@ public class PlayerController : MonoBehaviour {
 
 	void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-
 	}
 }
 

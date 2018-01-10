@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        bulletManager = GetComponent<BulletManager>();
+        bulletManager = GetComponentInChildren<BulletManager>();
         player = GameObject.Find("Player");
         health = maxHealth;
 	}
@@ -53,16 +53,16 @@ public class Enemy : MonoBehaviour {
 
 		
 	}
-
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "PBullet" && isMortal)
         {
-            damage(collider.GetComponent<Bullet>().damage);
+            damage(collider.gameObject.GetComponent<Bullet>().damage);
             collider.gameObject.SetActive(false);
             print(name + " - TRIGGERED");
         }
     }
+    
 
     void damage(float dam)
     {
