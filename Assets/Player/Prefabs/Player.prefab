@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4997070306753514}
   - component: {fileID: 114218120954219174}
+  - component: {fileID: 114339546159131068}
   m_Layer: 2
   m_Name: Bullet Origin
   m_TagString: Untagged
@@ -41,7 +42,7 @@ GameObject:
   - component: {fileID: 143842931298977460}
   m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -339,7 +340,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1854550711845848, guid: 6bab5889978c883429b7ed95e6abf775, type: 2}
   maxBullets: 100
-  bulletDelay: 0.05
 --- !u!114 &114250927518333498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,6 +354,18 @@ MonoBehaviour:
   camPoint: {fileID: 1607661626062716}
   mouseSensativityX: 10
   mouseSensativityY: 5
+--- !u!114 &114339546159131068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1012929523772984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbd30e1480c7b24783c427e3e774699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDelay: 0.1
 --- !u!114 &114915300359983118
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,16 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-
-    BulletManager bulletManager;
     GameObject player;
-
-    public BulletManager.BulletPattern pattern = BulletManager.BulletPattern.CIRCLE;
-
-    public int numBurstBullets;
-    public float angleStart;
-    public float angleEnd;
-
+    BulletEmitter[] bulletEmitters;
     private float health;
     public float maxHealth;
 
@@ -21,7 +13,8 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        bulletManager = GetComponentInChildren<BulletManager>();
+        bulletEmitters = GetComponentsInChildren<BulletEmitter>();
+
         player = GameObject.Find("Player");
         health = maxHealth;
 	}
@@ -29,26 +22,22 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        switch (pattern)
+        foreach (var element in bulletEmitters)
         {
-            case BulletManager.BulletPattern.CIRCLE:
-                if(bulletManager.Shoot(BulletManager.BulletPattern.CIRCLE, numBurstBullets, angleStart, angleEnd))
-				{
-					//numBurstBullets++;
-				}
-                break;
-            case BulletManager.BulletPattern.TRACE:
-                bulletManager.Shoot(player.gameObject.transform.position);
-                break;
+            if (element is BulletToPoint)
+            {
+                BulletToPoint bulletToPoint = element as BulletToPoint;
+                bulletToPoint.ShootPosition = player.transform.position + new Vector3(0,1,0);
+            }
+            element.Shoot();
         }
 
-
-		Vector3 newPos = transform.position;
-		newPos.y += Mathf.Sin(Time.timeSinceLevelLoad)/80;
-		transform.position = newPos;
+		//Vector3 newPos = transform.position;
+		//newPos.y += Mathf.Sin(Time.timeSinceLevelLoad)/80;
+		//transform.position = newPos;
 
 		Vector3 newRot = transform.eulerAngles;
-		newRot.y += 20 * Time.deltaTime;
+		newRot.y += 1 * Time.deltaTime;
 		transform.eulerAngles = newRot;
 
 		

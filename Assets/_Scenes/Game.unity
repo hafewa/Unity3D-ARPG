@@ -209,9 +209,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1125538824198312, guid: add001069345e3f4995d634580de7d5e, type: 2}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 114339546159131068, guid: add001069345e3f4995d634580de7d5e,
+        type: 2}
+      propertyPath: bulletDelay
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997070306753514, guid: add001069345e3f4995d634580de7d5e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: add001069345e3f4995d634580de7d5e, type: 2}
@@ -516,14 +521,48 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 54447890899546642, guid: 6c35d6204db36cf4aa772bc9b5f4b476,
+    - target: {fileID: 114070726957217680, guid: 6c35d6204db36cf4aa772bc9b5f4b476,
         type: 2}
-      propertyPath: m_Constraints
-      value: 80
+      propertyPath: bulletDelay
+      value: 0.1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114070726957217680, guid: 6c35d6204db36cf4aa772bc9b5f4b476,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634197320264598, guid: 6c35d6204db36cf4aa772bc9b5f4b476,
+        type: 2}
+      propertyPath: maxBullets
+      value: 5000
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114070726957217680, guid: 6c35d6204db36cf4aa772bc9b5f4b476, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6c35d6204db36cf4aa772bc9b5f4b476, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &928749695 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1128084771687906, guid: 6c35d6204db36cf4aa772bc9b5f4b476,
+    type: 2}
+  m_PrefabInternal: {fileID: 793442536}
+--- !u!114 &928749701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 928749695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece570a495c51044ea259ff800f42448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDelay: 1
+  numberBulletPerCircle: 10
+  numberOfCircles: 6
+  angleSphereStart: 0
+  angleSphereEnd: 360
+  angleCircleStart: 0
+  angleCircleEnd: 360
 --- !u!1 &1042915044
 GameObject:
   m_ObjectHideFlags: 0

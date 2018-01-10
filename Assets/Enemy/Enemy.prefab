@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4101810218960540}
   - component: {fileID: 114634197320264598}
+  - component: {fileID: 114070726957217680}
   m_Layer: 0
   m_Name: Bullet Origin
   m_TagString: Untagged
@@ -155,8 +156,23 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &114070726957217680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1128084771687906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac980f82c705f646a50edf4806b5dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDelay: 0.1
+  numberBulletsPerBurst: 8
+  angleStart: 0
+  angleEnd: 360
 --- !u!114 &114089834681651144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pattern: 0
   numBurstBullets: 10
   angleStart: 0
   angleEnd: 360
@@ -187,7 +202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1854550711845848, guid: 494e349ee8bcf3447b95f6094877a007, type: 2}
   maxBullets: 1000
-  bulletDelay: 0.4
 --- !u!136 &136805713482325548
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -15,11 +15,8 @@ public class PlayerController : MonoBehaviour {
 	
 	//Rigidbody playerRigidbody;
 	CharacterController charController;
-	Animator animator;
-
 	PlayerData playerData;
-
-	BulletManager bulletManager;
+	BulletToPoint bulletToPoint;
 
 	public float gravity;
 
@@ -42,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 		//playerRigidbody = GetComponent<Rigidbody>();
 		playerData = GetComponent<PlayerData>();
 		charController = GetComponent<CharacterController>();
-		bulletManager = GetComponentInChildren<BulletManager>();
+		bulletToPoint = GetComponentInChildren<BulletToPoint>();
 
 		Cursor.lockState = CursorLockMode.Locked;
 		
@@ -59,11 +56,13 @@ public class PlayerController : MonoBehaviour {
 			RaycastHit hit; 
 			if (Physics.Raycast(camera.transform.position,camera.transform.forward,out hit,100, aimMask))
 			{
-				bulletManager.Shoot(hit.point);
+				bulletToPoint.ShootPosition = hit.point;
+				bulletToPoint.Shoot();
 			}
 			else
 			{
-				bulletManager.Shoot(camera.transform.forward * cameraMult);
+				bulletToPoint.ShootPosition = camera.transform.forward * cameraMult;
+				bulletToPoint.Shoot();
 			}
 			//(camera.transform.position, camera.transform.right,100,aimMask);
 			//SetGFXRotation();
