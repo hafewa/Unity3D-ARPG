@@ -25,11 +25,11 @@ public class BulletCircle : BulletEmitter
             {
                 Vector3 velocity = MathG.DegreeToVector2D(((angleEnd - angleStart) / numberBulletsPerBurst * i) + angleStart, 1);
                 obj.GetComponent<Bullet>().Reset(pos, new Vector3(velocity.x, 0, velocity.y));
+                
             }
         }
-        canShoot = false;
         timer = 0;
-        
+        canShoot = false;
         return true;
     }
 }

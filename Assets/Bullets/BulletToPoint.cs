@@ -21,8 +21,8 @@ public class BulletToPoint : BulletEmitter
         {
             Vector3 velocity = MathG.NormalVector( _shootPosition - transform.position);
             bull.GetComponent<Bullet>().Reset(gameObject.transform.position, velocity);
-            canShoot = false;
             timer = 0;
+            canShoot = false;
             return true;
         }
         return false;

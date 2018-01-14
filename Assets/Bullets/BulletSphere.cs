@@ -40,8 +40,10 @@ public class BulletSphere : BulletEmitter
 			newSphereRot.y += (angleSphereEnd - angleSphereStart)/numberOfCircles;
 			transform.eulerAngles = newSphereRot;
 		}
-
 		transform.eulerAngles = oldRot;
+
+		timer = 0;
+		canShoot = false;
 		return true;
 	}
 }

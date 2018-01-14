@@ -21,7 +21,7 @@ public class BulletEmitter : MonoBehaviour
         if (timer >= bulletDelay)
         {
             canShoot = true;
-        }	
+        }
 	}
 
 	public virtual bool Shoot()
