@@ -29,6 +29,6 @@ public class MainMenu : MonoBehaviour {
 
 	void ExitButton()
 	{
-		levelManager.ExitGame();
+		 LevelManager.ExitGame();
 	}
 }

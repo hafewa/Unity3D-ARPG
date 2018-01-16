@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	public void ExitGame()
+	static public void ExitGame()
 	{
 		Application.Quit();
 	}
