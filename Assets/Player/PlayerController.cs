@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject camPoint;
 	public GameObject GFX;
 	Transform GFXTransform;
+	public Transform ModelRoot;
 
 	//PlayerInfo
 	
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	CharacterController charController;
 	PlayerData playerData;
 	BulletToPoint bulletToPoint;
+	Animator animator;
 
 	public float gravity;
 
@@ -39,7 +41,9 @@ public class PlayerController : MonoBehaviour {
 		//playerRigidbody = GetComponent<Rigidbody>();
 		playerData = GetComponent<PlayerData>();
 		charController = GetComponent<CharacterController>();
+
 		bulletToPoint = GetComponentInChildren<BulletToPoint>();
+		animator = GetComponentInChildren<Animator>();
 
 		Cursor.lockState = CursorLockMode.Locked;
 		
@@ -134,6 +138,15 @@ public class PlayerController : MonoBehaviour {
 
 		charController.Move(velocity * Time.fixedDeltaTime);
 		if(charController.isGrounded) {velocity.y = 0;}
+
+		if(velocity.magnitude != 0)
+		{
+			animator.SetBool("IsRunning", true);
+		}
+		else 
+		{
+			animator.SetBool("IsRunning", false);
+		}
 	}
 
 	void SetGFXRotation()
@@ -142,6 +155,20 @@ public class PlayerController : MonoBehaviour {
 		Vector3 newGFXRotation = GFXTransform.eulerAngles;
 		newGFXRotation.y = camPoint.GetComponent<Transform>().eulerAngles.y;
 		GFXTransform.eulerAngles = newGFXRotation;
+		ResetModelTransform();
+	}
+
+	void ResetModelTransform()
+	{
+		Vector3 newModelRotation = ModelRoot.localEulerAngles;
+		newModelRotation.y = 90;
+		ModelRoot.localEulerAngles = newModelRotation;
+
+		Vector3 newPosition = ModelRoot.localPosition;
+		newPosition = new Vector3(0,-1,0);
+		ModelRoot.localPosition = newPosition;
+
+
 	}
 
 	void MoveByVelocity(Vector3 norm)
