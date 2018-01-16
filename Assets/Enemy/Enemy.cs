@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
     BulletEmitter[] bulletEmitters;
     private float health;
     public float maxHealth;
+    public bool isTargetingPlayer;
 
     public bool isMortal = true;
 
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour {
     {
         foreach (var element in bulletEmitters)
         {
-            if (element is BulletToPoint)
+            if (element is BulletToPoint && isTargetingPlayer == true)
             {
                 BulletToPoint bulletToPoint = element as BulletToPoint;
                 bulletToPoint.ShootPosition = player.transform.position + new Vector3(0,1,0);
