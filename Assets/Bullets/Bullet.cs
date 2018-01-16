@@ -53,14 +53,21 @@ public class Bullet : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
 		if (other.tag == "Ground")
         {
             gameObject.SetActive(false);
         }
-        else if (other.tag == "PBullet" && gameObject.tag == "EBullet")
+        
+        if (other.tag == "PBullet" && gameObject.tag == "EBullet")
         {
             other.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerController>().Damage(damage);
             gameObject.SetActive(false);
         }
 	}

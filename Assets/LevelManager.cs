@@ -20,17 +20,22 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	public void LoadNextScene()
+	public void ExitGame()
+	{
+		Application.Quit();
+	}
+
+	static public void LoadNextScene()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 
-	public void LoadScene(string name)
+	static public void LoadScene(string name)
 	{
 		SceneManager.LoadScene(name);
 	}
 
-	public void LoadScene(int buildIndex)
+	static public void LoadScene(int buildIndex)
 	{
 		SceneManager.LoadScene(buildIndex);
 	}

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	//Rigidbody playerRigidbody;
 	CharacterController charController;
 	PlayerData playerData;
+	PlayerUI playerUI;
 	BulletToPoint bulletToPoint;
 	Animator animator;
 
@@ -27,6 +28,19 @@ public class PlayerController : MonoBehaviour {
 
 	public Vector3 velocity = Vector3.zero;
 	//Keys
+
+	public float maxHealth = 100;
+
+	[SerializeField]
+	private float _health;
+
+	public float health
+	{
+		get {return _health;}
+		set {_health = value;}
+	}
+
+	bool wasDamaged = false;
 
 	bool bForward;
 	bool bBack;
@@ -40,10 +54,14 @@ public class PlayerController : MonoBehaviour {
 		GFXTransform = GFX.GetComponent<Transform>();
 		//playerRigidbody = GetComponent<Rigidbody>();
 		playerData = GetComponent<PlayerData>();
+		playerUI = GetComponent<PlayerUI>();
+
 		charController = GetComponent<CharacterController>();
 
 		bulletToPoint = GetComponentInChildren<BulletToPoint>();
 		animator = GetComponentInChildren<Animator>();
+
+		_health = maxHealth;
 
 		Cursor.lockState = CursorLockMode.Locked;
 		
@@ -83,6 +101,8 @@ public class PlayerController : MonoBehaviour {
 		bBack = Input.GetKey(playerData.back);
 		bRight = Input.GetKey(playerData.right);
 		bLeft = Input.GetKey(playerData.left);
+
+		wasDamaged = false;
 	}
 
 	void Movement()
@@ -178,8 +198,30 @@ public class PlayerController : MonoBehaviour {
 		velocity = newVel;
 	}
 
+	public void Damage(float damage)
+	{
+		if(wasDamaged){return;}
+
+		print("Player - Damaged " + damage);
+		_health -= damage;
+		playerUI.UpdateHealthBar();
+		wasDamaged = true;
+		//Death
+		if (_health <= 0)
+		{
+			_health = 0;
+			LevelManager.LoadScene(0);
+		}
+	}
+
 	void OnControllerColliderHit(ControllerColliderHit hit)
 	{
+		//if (hit.gameObject.tag == "EBullet")
+		//{
+		//	Bullet bull = hit.gameObject.GetComponent<Bullet>();
+		//	Damage(bull.damage);
+		//	bull.gameObject.SetActive(false);
+		//}
 	}
 }
 
