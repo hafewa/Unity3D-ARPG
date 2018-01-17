@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479469833537244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.7, y: -3.9708148e-18, z: 9.9}
+  m_LocalPosition: {x: -0.9985216, y: 0.5, z: 10.694737}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4128590397750542}
@@ -182,7 +182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  isTargetingPlayer: 1
   isMortal: 1
+  healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
+    type: 2}
 --- !u!114 &114971166759953004
 MonoBehaviour:
   m_ObjectHideFlags: 1

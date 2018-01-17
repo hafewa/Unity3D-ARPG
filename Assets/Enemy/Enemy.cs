@@ -59,7 +59,10 @@ public class Enemy : MonoBehaviour {
 		newRot.y += 1 * Time.deltaTime;
 		transform.eulerAngles = newRot;
         
-        healthBarTransform.anchoredPosition = RectTransformUtility.WorldToScreenPoint(playerCamera,transform.position);
+        healthBarTransform.anchoredPosition = 
+            RectTransformUtility.WorldToScreenPoint(
+                playerCamera,transform.position + new Vector3(0,2,0)
+                );
         
 		
 	}

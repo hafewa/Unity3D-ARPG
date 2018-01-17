@@ -7,18 +7,30 @@ public class BulletSphere : BulletEmitter
 	public int numberBulletsPerRing = 10;
 	public int numberOfRings = 6;
 	public float angleSphereStart = 0;
-	public float angleSphereEnd = 360;
-
+	//360 will have doubles
+	public float angleSphereEnd = 180;
 	public float angleRingStart = 0;
 	public float angleRingEnd = 360;
-
+	public bool isRotating;
+	public bool resetRotation;
+	public Vector3 rotationSpeed;
+	
 	public override bool Shoot()
 	{
 		if (!canShoot) { return false; }
 
-		Vector3 oldRot = transform.eulerAngles;
         Vector3 pos = transform.position;
         GameObject currentBullet;
+
+		if(isRotating)
+		{
+			transform.Rotate(rotationSpeed * Time.deltaTime);
+		}
+		if(resetRotation)
+		{
+			resetRotation = false;
+			transform.eulerAngles = Vector3.zero;
+		}
 
 		for (int i = 0; i < numberOfRings; ++i)
         {
@@ -28,17 +40,15 @@ public class BulletSphere : BulletEmitter
             	if (currentBullet != null)
             	{
 					Vector3 newCircleRot = new Vector3(
-						(angleRingEnd - angleRingStart)/numberBulletsPerRing * x, 
-						(angleSphereEnd - angleSphereStart)/numberOfRings * i);
+						transform.eulerAngles.x + (angleRingEnd - angleRingStart)/numberBulletsPerRing * x, 
+						transform.eulerAngles.y + (angleSphereEnd - angleSphereStart)/numberOfRings * i);
 
 					currentBullet.GetComponent<Bullet>().ResetBasedOnRotation(pos,newCircleRot);
 				}
 			}
 			Vector3 newSphereRot = transform.eulerAngles;
 			newSphereRot.y += (angleSphereEnd - angleSphereStart)/numberOfRings;
-			transform.eulerAngles = newSphereRot;
 		}
-		transform.eulerAngles = oldRot;
 
 		timer = 0;
 		canShoot = false;
