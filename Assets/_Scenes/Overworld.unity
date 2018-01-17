@@ -82,7 +82,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
+    agentSlope: 40
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -415,17 +415,6 @@ Prefab:
     - target: {fileID: 4693383006439640, guid: 80908a8fe7c251f42b98180b5a98742e, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114597316452976280, guid: 80908a8fe7c251f42b98180b5a98742e,
-        type: 2}
-      propertyPath: healthBarPrefab
-      value: 
-      objectReference: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
-        type: 2}
-    - target: {fileID: 54424322874725300, guid: 80908a8fe7c251f42b98180b5a98742e,
-        type: 2}
-      propertyPath: m_UseGravity
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80908a8fe7c251f42b98180b5a98742e, type: 2}
