@@ -9,6 +9,7 @@ TagManager:
   - PBullet
   - EBullet
   - LevelManager
+  - Canvas
   layers:
   - Default
   - TransparentFX

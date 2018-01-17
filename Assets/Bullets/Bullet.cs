@@ -51,6 +51,20 @@ public class Bullet : MonoBehaviour {
         gameObject.transform.position = position + velocity*2;
     }
 
+    public void ResetBasedOnRotation(Vector3 position, Vector3 rotation)
+    {
+        gameObject.SetActive(true);
+        if (bRigidbody == null)
+        {
+            bRigidbody = gameObject.GetComponent<Rigidbody>();
+        }
+
+        life = 0;
+        bRigidbody.position = position;
+        bRigidbody.transform.eulerAngles = rotation;
+        bRigidbody.velocity = transform.forward.normalized * speed;
+    }
+
 	void OnTriggerEnter(Collider other)
 	{
         //gameObject.SetActive(false);

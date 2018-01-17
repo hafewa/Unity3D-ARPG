@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
     GameObject player;
@@ -11,6 +12,15 @@ public class Enemy : MonoBehaviour {
 
     public bool isMortal = true;
 
+
+    RectTransform healthBarTransform;
+    Camera playerCamera;
+    public GameObject healthBarPrefab;
+    Slider healthBarSlider;
+    GameObject healthBarObject;
+
+
+
 	// Use this for initialization
 	void Start ()
     {
@@ -18,6 +28,15 @@ public class Enemy : MonoBehaviour {
 
         player = GameObject.Find("Player");
         health = maxHealth;
+
+        healthBarObject = Instantiate(healthBarPrefab, 
+        GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>()
+        );
+        healthBarTransform = healthBarObject.GetComponent<RectTransform>();
+        healthBarSlider = healthBarObject.GetComponent<Slider>();
+
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
 	}
 	
 	// Update is called once per frame
@@ -32,7 +51,6 @@ public class Enemy : MonoBehaviour {
             }
             element.Shoot();
         }
-
 		//Vector3 newPos = transform.position;
 		//newPos.y += Mathf.Sin(Time.timeSinceLevelLoad)/80;
 		//transform.position = newPos;
@@ -40,7 +58,9 @@ public class Enemy : MonoBehaviour {
 		Vector3 newRot = transform.eulerAngles;
 		newRot.y += 1 * Time.deltaTime;
 		transform.eulerAngles = newRot;
-
+        
+        healthBarTransform.anchoredPosition = RectTransformUtility.WorldToScreenPoint(playerCamera,transform.position);
+        
 		
 	}
     void OnTriggerEnter(Collider collider)
@@ -49,16 +69,23 @@ public class Enemy : MonoBehaviour {
         {
             damage(collider.gameObject.GetComponent<Bullet>().damage);
             collider.gameObject.SetActive(false);
-            print(name + " - TRIGGERED");
+            //print(name + " - TRIGGERED");
         }
     }
     
-
+    void UpdateHealthBar()
+    {
+        healthBarSlider.value = health/maxHealth;
+    }
+    
     void damage(float dam)
     {
         health = health - dam;
+        UpdateHealthBar();
+
         if(health <= 0)
         {
+            healthBarObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }

@@ -27,13 +27,11 @@ public class BulletSphere : BulletEmitter
 				currentBullet = bulletManager.GetNextBullet();
             	if (currentBullet != null)
             	{
-					Vector3 newCircleRot = transform.eulerAngles;
-					newCircleRot.z += (angleCircleEnd - angleCircleStart)/numberBulletPerCircle;
-					transform.eulerAngles = newCircleRot;
+					Vector3 newCircleRot = new Vector3(
+						(angleCircleEnd - angleCircleStart)/numberBulletPerCircle * x, 
+						(angleSphereEnd - angleSphereStart)/numberBulletPerCircle * i);
 
-					MathG.DegreeToVector2D(transform.eulerAngles.z,1);
-
-					currentBullet.GetComponent<Bullet>().Reset(pos,transform.forward);
+					currentBullet.GetComponent<Bullet>().ResetBasedOnRotation(pos,newCircleRot);
 				}
 			}
 			Vector3 newSphereRot = transform.eulerAngles;

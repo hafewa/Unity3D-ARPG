@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if(wasDamaged){return;}
 
-		print("Player - Damaged " + damage);
+		//print("Player - Damaged " + damage);
 		_health -= damage;
 		playerUI.UpdateHealthBar();
 		wasDamaged = true;
