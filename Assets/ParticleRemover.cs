@@ -14,7 +14,7 @@ public class ParticleRemover : MonoBehaviour {
 	{
 		if(particleSystem.isStopped)
 		{
-			//gameObject.SetActive(false);
+			gameObject.SetActive(false);
 			Destroy(gameObject);
 		}
 	}
