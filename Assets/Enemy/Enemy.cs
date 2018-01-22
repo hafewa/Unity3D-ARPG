@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
     GameObject player;
     BulletEmitter[] bulletEmitters;
     private float health;
@@ -19,17 +20,19 @@ public class Enemy : MonoBehaviour {
     Slider healthBarSlider;
     GameObject healthBarObject;
 
+    public GameObject onDeathParticle;
 
 
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start()
     {
         bulletEmitters = GetComponentsInChildren<BulletEmitter>();
 
         player = GameObject.Find("Player");
         health = maxHealth;
 
-        healthBarObject = Instantiate(healthBarPrefab, 
+        healthBarObject = Instantiate(healthBarPrefab,
         GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>()
         );
         healthBarTransform = healthBarObject.GetComponent<RectTransform>();
@@ -37,35 +40,36 @@ public class Enemy : MonoBehaviour {
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
+
         foreach (var element in bulletEmitters)
         {
             if (element is BulletToPoint && isTargetingPlayer == true)
             {
                 BulletToPoint bulletToPoint = element as BulletToPoint;
-                bulletToPoint.ShootPosition = player.transform.position + new Vector3(0,1,0);
+                bulletToPoint.ShootPosition = player.transform.position + new Vector3(0, 1, 0);
             }
             element.Shoot();
         }
-		//Vector3 newPos = transform.position;
-		//newPos.y += Mathf.Sin(Time.timeSinceLevelLoad)/80;
-		//transform.position = newPos;
+        //Vector3 newPos = transform.position;
+        //newPos.y += Mathf.Sin(Time.timeSinceLevelLoad)/80;
+        //transform.position = newPos;
 
-		Vector3 newRot = transform.eulerAngles;
-		newRot.y += 1 * Time.deltaTime;
-		transform.eulerAngles = newRot;
-        
-        healthBarTransform.anchoredPosition = 
+        Vector3 newRot = transform.eulerAngles;
+        newRot.y += 1 * Time.deltaTime;
+        transform.eulerAngles = newRot;
+
+        healthBarTransform.anchoredPosition =
             RectTransformUtility.WorldToScreenPoint(
-                playerCamera,transform.position + new Vector3(0,2,0)
+                playerCamera, transform.position + new Vector3(0, 2, 0)
                 );
-        
-		
-	}
+
+
+    }
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "PBullet" && isMortal)
@@ -75,22 +79,31 @@ public class Enemy : MonoBehaviour {
             //print(name + " - TRIGGERED");
         }
     }
-    
+
     void UpdateHealthBar()
     {
-        healthBarSlider.value = health/maxHealth;
+        healthBarSlider.value = health / maxHealth;
     }
-    
+
     void damage(float dam)
     {
         health = health - dam;
         UpdateHealthBar();
 
-        if(health <= 0)
+        if (health <= 0)
         {
-            healthBarObject.SetActive(false);
-            gameObject.SetActive(false);
+            Death();
         }
+    }
+
+    void Death()
+    {
+        Instantiate(onDeathParticle,transform.position,Quaternion.identity);
+        healthBarObject.SetActive(false);
+        gameObject.SetActive(false);
+
+        //Destroy(healthBarObject);
+        //Destroy(gameObject);
     }
 
 }

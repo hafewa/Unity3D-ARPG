@@ -23220,11 +23220,6 @@ Prefab:
       propertyPath: objectToTrack
       value: 
       objectReference: {fileID: 1412723157}
-    - target: {fileID: 114886953066646190, guid: 937b8cb23e267a940877ea3b5bdf67c1,
-        type: 2}
-      propertyPath: bulletDelay
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 937b8cb23e267a940877ea3b5bdf67c1, type: 2}
   m_IsPrefabParent: 0

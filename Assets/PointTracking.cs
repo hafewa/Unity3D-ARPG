@@ -5,15 +5,17 @@ using UnityEngine;
 public class PointTracking : MonoBehaviour {
 
 	public bool isTracking;
-	public GameObject objectToTrack;
+	private GameObject _objectToTrack;
 	public string tagOfObjectToTrack;
-
-	// Update is called once per frame
+	void Start()
+	{
+		_objectToTrack = GameObject.FindGameObjectWithTag(tagOfObjectToTrack);
+	}
 	void Update () 
 	{
 		if(isTracking)
 		{
-			transform.LookAt(objectToTrack.transform.position, transform.up);
+			transform.LookAt(_objectToTrack.transform.position, transform.up);
 		}
 		
 	}

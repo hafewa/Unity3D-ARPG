@@ -187,6 +187,8 @@ MonoBehaviour:
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
     type: 2}
+  onDeathParticle: {fileID: 1152214126834450, guid: 1909d2e5ac65c3b408a49c44e060ebfb,
+    type: 2}
 --- !u!114 &114971166759953004
 MonoBehaviour:
   m_ObjectHideFlags: 1
