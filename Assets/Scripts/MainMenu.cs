@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 	LevelManager levelManager;
 
 	// Use this for initialization
-	void Start () 
+	void LateUpdate () 
 	{
 		levelManager = 
 			GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();

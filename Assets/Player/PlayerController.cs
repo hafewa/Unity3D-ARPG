@@ -62,19 +62,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         //playerRigidbody = GetComponent<Rigidbody>();
         playerData = GetComponent<PlayerData>();
         playerUI = GetComponent<PlayerUI>();
-
         charController = GetComponent<CharacterController>();
-
         bulletToPoint = GetComponentInChildren<BulletToPoint>();
         bulletSphere = GetComponentInChildren<BulletSphere>();
-
         animator = GetComponentInChildren<Animator>();
-
         _health = maxHealth;
-
         meleeCollider.SetActive(false);
-
         Cursor.lockState = CursorLockMode.Locked;
+
+        print(GameManager.currentCheckpoint);
+        if(GameManager.currentCheckpoint != null)
+        {
+            transform.position = GameObject.Find(GameManager.currentCheckpoint).transform.position;
+        }
 
     }
 

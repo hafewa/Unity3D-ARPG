@@ -488,8 +488,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 95395264250319872, guid: 0461db9ead99cc84f92cd473caf404c3, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0461db9ead99cc84f92cd473caf404c3, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &478389914
@@ -18114,6 +18113,11 @@ Prefab:
         type: 2}
       propertyPath: angleSphereEnd
       value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 114915300359983118, guid: add001069345e3f4995d634580de7d5e,
+        type: 2}
+      propertyPath: maxHealth
+      value: 100999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: add001069345e3f4995d634580de7d5e, type: 2}

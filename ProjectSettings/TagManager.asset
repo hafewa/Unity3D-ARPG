@@ -11,6 +11,7 @@ TagManager:
   - LevelManager
   - Canvas
   - fakeCamera
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

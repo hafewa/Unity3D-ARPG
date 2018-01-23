@@ -5,9 +5,16 @@ using UnityEngine;
 public class CollisionButton : MonoBehaviour
 {
     public GameObject[] objects;
+    public bool isOneTime;
+    bool hasBeenTriggered;
 
     void OnTriggerEnter(Collider other)
     {
+        if (isOneTime && hasBeenTriggered)
+        {
+            return;
+        }
+
         if (other.tag == "Player")
         {
             //other.GetComponent<PlayerController>().Damage(damage);
@@ -15,6 +22,8 @@ public class CollisionButton : MonoBehaviour
             {
                 item.GetComponent<ITriggerable>().Trigger();
             }
+
+            hasBeenTriggered = true;
         }
     }
 }
