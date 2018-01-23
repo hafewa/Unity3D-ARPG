@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4893277187155826}
   - component: {fileID: 65408822500982018}
+  - component: {fileID: 114274132493754756}
   m_Layer: 0
   m_Name: Elevator Trigger
   m_TagString: Untagged
@@ -473,8 +474,21 @@ MonoBehaviour:
   moveSpeed: 5
   isMovingUp: 0
   isMovingDown: 0
+  isUp: 1
+  isDown: 0
   snappingDistance: 0.1
-  startUp: 1
+--- !u!114 &114274132493754756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243776229725640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7d9302c6bd6b24f91719860bb94939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elevator: {fileID: 114257619841203282}
 --- !u!114 &114348250234741874
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -47,8 +47,8 @@ public class Bullet : MonoBehaviour {
 
         life = 0;
         //bRigidbody.position = pos;
-		 bRigidbody.velocity = velocity * speed;
-        gameObject.transform.position = position + velocity*2;
+		bRigidbody.velocity = velocity * speed;
+        gameObject.transform.position = position + velocity;
     }
 
     public void ResetBasedOnRotation(Vector3 position, Vector3 rotation)

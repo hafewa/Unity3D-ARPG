@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			//Debug.DrawRay(camera.transform.position,camera.transform.forward * 100,Color.red,1);
 			RaycastHit hit; 
-			if (Physics.Raycast(camera.transform.position,camera.transform.forward,out hit,100, aimMask))
+			if (Physics.Raycast(camera.transform.position,camera.transform.forward,out hit,300, aimMask))
 			{
 				bulletToPoint.ShootPosition = hit.point;
 				bulletToPoint.Shoot();
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour {
 		charController.Move(velocity * Time.fixedDeltaTime);
 		if(charController.isGrounded) {velocity.y = 0;}
 
-		if(velocity.magnitude != 0)
+		if(velocity.x != 0 && velocity.z != 0)
 		{
 			animator.SetBool("IsRunning", true);
 		}
