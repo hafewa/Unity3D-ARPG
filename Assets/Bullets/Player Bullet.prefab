@@ -113,6 +113,9 @@ MonoBehaviour:
   speed: 60
   maxLife: 5
   isDestroyable: 1
+  enemy:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!135 &135700982000066710
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossEye : MonoBehaviour,IDamageable {
 
 	public BossEnemy bossEnemy;
-	public BulletSphere bulletSphereEye;
+	public BulletCircle bulletCircleEye;
 	public BulletToPoint bulletToPointEye;
 	GameObject player;
 
@@ -16,15 +16,16 @@ public class BossEye : MonoBehaviour,IDamageable {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public void Shoot () 
 	{
-		bulletSphereEye.Shoot();
+		bulletCircleEye.Shoot();
 		bulletToPointEye.ShootPosition = player.transform.position + new Vector3(0,1,0);
 		bulletToPointEye.Shoot();
 	}
 
 	public bool Damage(float damage)
 	{	
-		return false;
+		bossEnemy.Damage(damage);
+		return true;
 	}
 }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33215679307293848}
   - component: {fileID: 135997620125242276}
   - component: {fileID: 23438361353521890}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eye Center
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -40,7 +40,9 @@ GameObject:
   - component: {fileID: 33152275743538912}
   - component: {fileID: 135429368116440818}
   - component: {fileID: 23578205830532704}
-  m_Layer: 0
+  - component: {fileID: 114501492306455176}
+  - component: {fileID: 114061174478847414}
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -73,8 +75,8 @@ GameObject:
   - component: {fileID: 4844164622844702}
   - component: {fileID: 114806354573361696}
   - component: {fileID: 114186813269770716}
-  - component: {fileID: 114530973378581202}
   - component: {fileID: 114371159374961598}
+  - component: {fileID: 114386244921360274}
   m_Layer: 10
   m_Name: Bullet Origin
   m_TagString: Untagged
@@ -167,14 +169,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983045895934352}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 13.9, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4492917653556552}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4731704660007800
 Transform:
   m_ObjectHideFlags: 1
@@ -183,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 1334383147417648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 80, y: 80, z: 80}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4232301756513926}
   m_Father: {fileID: 4492917653556552}
@@ -196,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361241254540790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4909049376698408}
@@ -347,6 +349,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932141292303952}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114061174478847414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331601553955776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac980f82c705f646a50edf4806b5dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletManager: {fileID: 114501492306455176}
+  bulletDelay: 0.5
+  numberBulletsPerBurst: 32
+  angleStart: 0
+  angleEnd: 180
 --- !u!114 &114186813269770716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,8 +390,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletManager: {fileID: 114186813269770716}
-  bulletDelay: 1
+  bulletDelay: 0.5
   _shootPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &114386244921360274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361241254540790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac980f82c705f646a50edf4806b5dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletManager: {fileID: 114806354573361696}
+  bulletDelay: 0.2
+  numberBulletsPerBurst: 10
+  angleStart: 0
+  angleEnd: 180
 --- !u!114 &114398081253434146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,30 +433,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossEnemy: {fileID: 114554969809106494}
-  bulletSphereEye: {fileID: 114530973378581202}
+  bulletCircleEye: {fileID: 114386244921360274}
   bulletToPointEye: {fileID: 114371159374961598}
---- !u!114 &114530973378581202
+--- !u!114 &114501492306455176
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1361241254540790}
+  m_GameObject: {fileID: 1331601553955776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ece570a495c51044ea259ff800f42448, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c9e01061bd5db04cb8a1943c99ab877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletManager: {fileID: 114806354573361696}
-  bulletDelay: 0.1
-  numberBulletsPerRing: 10
-  numberOfRings: 6
-  angleSphereStart: 0
-  angleSphereEnd: 180
-  angleRingStart: 0
-  angleRingEnd: 180
-  isRotating: 0
-  resetRotation: 0
-  rotationSpeed: {x: 0, y: 0, z: 0}
+  bullet: {fileID: 1854550711845848, guid: 4b51471afaa2f1748bfad840dee97d0f, type: 2}
+  maxBullets: 10000
 --- !u!114 &114554969809106494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -434,6 +459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a317e5733b3f24c8f0727b34111ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 1000
+  healthBar: {fileID: 0}
+  bossEye: {fileID: 114490413655780934}
+  centerCircle: {fileID: 114061174478847414}
 --- !u!114 &114639880149481606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9e01061bd5db04cb8a1943c99ab877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1854550711845848, guid: 494e349ee8bcf3447b95f6094877a007, type: 2}
+  bullet: {fileID: 1854550711845848, guid: 4b51471afaa2f1748bfad840dee97d0f, type: 2}
   maxBullets: 10000
 --- !u!135 &135272177498699490
 SphereCollider:

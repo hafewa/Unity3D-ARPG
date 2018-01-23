@@ -74,6 +74,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33690213767427894
 MeshFilter:
@@ -111,6 +112,10 @@ MonoBehaviour:
   damage: 10
   speed: 30
   maxLife: 5
+  isDestroyable: 0
+  enemy:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!135 &135197548578491918
 SphereCollider:
   m_ObjectHideFlags: 1

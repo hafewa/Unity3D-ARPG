@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114821933708163402}
   - component: {fileID: 54076285274503194}
   m_Layer: 8
-  m_Name: Base Bullet
+  m_Name: Base Bullet Slow
   m_TagString: EBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  speed: 20
-  maxLife: 5
+  speed: 10
+  maxLife: 10
   isDestroyable: 1
   enemy:
     serializedVersion: 2

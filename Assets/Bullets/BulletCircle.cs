@@ -15,15 +15,15 @@ public class BulletCircle : BulletEmitter
         Vector3 pos = gameObject.transform.position;
         GameObject obj;
 
-		angleStart += transform.eulerAngles.y;
-		angleEnd += transform.eulerAngles.y;
+		float newAngleStart = transform.eulerAngles.y + angleStart;
+		float newAngleEnd = transform.eulerAngles.y + angleEnd;
 
         for (int i = 0; i < numberBulletsPerBurst; ++i)
         {
             obj = bulletManager.GetNextBullet();
             if (obj != null)
             {
-                Vector3 velocity = MathG.DegreeToVector2D(((angleEnd - angleStart) / numberBulletsPerBurst * i) + angleStart, 1);
+                Vector3 velocity = MathG.DegreeToVector2D(((newAngleEnd - newAngleStart) / numberBulletsPerBurst * i) + newAngleStart   , 1);
                 obj.GetComponent<Bullet>().Reset(pos, new Vector3(velocity.x, 0, velocity.y));
                 
             }

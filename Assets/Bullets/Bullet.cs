@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour {
     public bool isDestroyable;
     private Rigidbody bRigidbody;
 
+    public LayerMask enemy;
+
 	// Use this for initialization
 	//void Start ()
     //{
@@ -69,7 +71,7 @@ public class Bullet : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
         //gameObject.SetActive(false);
-		if (other.tag == "Ground")
+		if (other.tag == "Ground" && ((isDestroyable || other.gameObject.layer != enemy) || tag == "PBullet"))
         {
             gameObject.SetActive(false);
         }
@@ -80,7 +82,13 @@ public class Bullet : MonoBehaviour {
             gameObject.SetActive(false);
         }
 
-        if(other.tag == "Player" && gameObject.tag != "PBullet")
+        if(other.tag == "Enemy" && gameObject.tag == "PBullet")
+        {
+            other.GetComponent<IDamageable>().Damage(damage);
+            gameObject.SetActive(false);
+        }
+
+        if(other.tag == "Player" && gameObject.tag == "EBullet")
         {
             other.GetComponent<PlayerController>().Damage(damage);
             gameObject.SetActive(false);

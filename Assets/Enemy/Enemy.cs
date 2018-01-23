@@ -125,6 +125,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
 
     }
+
+    /*
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "PBullet" && isMortal)
@@ -134,6 +136,7 @@ public class Enemy : MonoBehaviour, IDamageable
             //print(name + " - TRIGGERED");
         }
     }
+    */
 
     void UpdateHealthBar()
     {
