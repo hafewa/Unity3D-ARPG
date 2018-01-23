@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114108641878815946}
   - component: {fileID: 54522601310196798}
   - component: {fileID: 136663000781129372}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Basic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4679005426153340}
   - component: {fileID: 33025705112996758}
   - component: {fileID: 23866209894735612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33509961302530700}
   - component: {fileID: 23203140765245392}
   - component: {fileID: 114319048372636472}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4128812273010570}
   - component: {fileID: 33340360618700212}
   - component: {fileID: 23164128055923642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eye Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4651867281757092}
   - component: {fileID: 114858338784368680}
   - component: {fileID: 114819479223694154}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4158915318081620}
   - component: {fileID: 33175347157859352}
   - component: {fileID: 23550464175232772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,8 +163,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115455107178324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.43, y: 0.5, z: -7.89}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.781296, y: 0.14, z: -29.525986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4651867281757092}
@@ -179,7 +179,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1559646663753782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4564667347320332}
@@ -380,13 +380,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
   isTargetingPlayer: 1
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
     type: 2}
   onDeathParticle: {fileID: 1152214126834450, guid: 1909d2e5ac65c3b408a49c44e060ebfb,
     type: 2}
+  playerDetectionDistance: 30
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 4294965465
+  detectedPlayer: 0
 --- !u!114 &114319048372636472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -411,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd30e1480c7b24783c427e3e774699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDelay: 1
+  bulletDelay: 0.2
   _shootPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114858338784368680
 MonoBehaviour:

@@ -5,15 +5,21 @@ using UnityEngine;
 public class TriggerActive : MonoBehaviour, ITriggerable 
 {
 	public bool startActive;
+	public float activationTime;
 
-	void Start()
+	void Awake()
 	{
 		gameObject.SetActive(startActive);
 	}
 
 	public bool Trigger()
 	{
-		gameObject.SetActive(!startActive);
+		Invoke("Activate",activationTime);	
 		return true;
+	}
+
+	void Activate()
+	{
+		gameObject.SetActive(!startActive);
 	}
 }

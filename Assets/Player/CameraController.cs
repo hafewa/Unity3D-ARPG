@@ -14,8 +14,6 @@ public class CameraController : MonoBehaviour
 
     public float maxAngleUp;
     public float maxAngleDown;
-
-    public LayerMask mask;
     public float cameraSpeed;
     int isCameraInverted = -1;
 
@@ -23,6 +21,7 @@ public class CameraController : MonoBehaviour
     Vector3 rayCastPos;
     public GameObject fakeCamera;
     public GameObject player;
+    public LayerMask maskForCamera;
     void Start()
     {
         currentCamera = GetComponent<Camera>();
@@ -47,13 +46,13 @@ public class CameraController : MonoBehaviour
         Vector3 newRotationCamera = currentCamera.transform.eulerAngles;
         newRotationCamera.x += Input.GetAxis("Mouse Y") * mouseSensativityY * isCameraInverted;
 
-        print("Sign = " + Mathf.Sign(newRotationCamera.x) + " Value: " + (newRotationCamera.x));
+        //print("Sign = " + Mathf.Sign(newRotationCamera.x) + " Value: " + (newRotationCamera.x));
 
         if (newRotationCamera.x > 180)
         {
             if (newRotationCamera.x < 360 - maxAngleUp)
             {
-                print("Too small");
+                //print("Too small");
                 newRotationCamera.x = 360 - maxAngleUp;
             }
         }
@@ -61,7 +60,7 @@ public class CameraController : MonoBehaviour
         {
             if (newRotationCamera.x > maxAngleDown)
             {
-                print("Too large");
+                //print("Too large");
                 newRotationCamera.x = maxAngleDown;
             }
         }
@@ -75,7 +74,7 @@ public class CameraController : MonoBehaviour
         Vector3 dir = player.transform.position - fakeCamera.transform.position;
         Debug.DrawLine(player.transform.position, player.transform.position + -dir.normalized * 10);
         RaycastHit hit;
-        if (Physics.Raycast(player.transform.position, -dir.normalized, out hit, 10))
+        if (Physics.Raycast(player.transform.position, -dir.normalized, out hit, 10, maskForCamera))
         {
             if (hit.collider.tag != "fakeCamera")
             {

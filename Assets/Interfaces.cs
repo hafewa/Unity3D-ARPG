@@ -6,3 +6,8 @@ interface ITriggerable
 {
 	bool Trigger();
 }
+
+interface IDamageable
+{
+	bool Damage(float damage);
+}

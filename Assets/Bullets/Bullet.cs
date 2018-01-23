@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour {
     private float life = 0;
     public  float maxLife = 1;
 
+    public bool isDestroyable;
     private Rigidbody bRigidbody;
 
 	// Use this for initialization
@@ -73,7 +74,7 @@ public class Bullet : MonoBehaviour {
             gameObject.SetActive(false);
         }
         
-        if (other.tag == "PBullet" && gameObject.tag == "EBullet")
+        if (other.tag == "PBullet" && gameObject.tag == "EBullet" && isDestroyable)
         {
             other.gameObject.SetActive(false);
             gameObject.SetActive(false);

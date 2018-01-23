@@ -112,6 +112,7 @@ MonoBehaviour:
   damage: 10
   speed: 60
   maxLife: 5
+  isDestroyable: 1
 --- !u!135 &135700982000066710
 SphereCollider:
   m_ObjectHideFlags: 1

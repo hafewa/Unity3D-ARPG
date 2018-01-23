@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     GameObject player;
     BulletEmitter[] bulletEmitters;
@@ -21,7 +21,12 @@ public class Enemy : MonoBehaviour
     GameObject healthBarObject;
 
     public GameObject onDeathParticle;
+    public float playerDetectionDistance;
+    public LayerMask playerMask;
 
+    public bool detectedPlayer;
+    public bool isBox;
+    public TriggerBOX boxOpenTrigger;
 
 
     // Use this for initialization
@@ -45,6 +50,55 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(
+            transform.position + new Vector3(0, 1, 0),
+            ((player.transform.position + new Vector3(0, 1f, 0)) - transform.position).normalized);
+
+        RaycastHit hit;
+        Physics.Raycast(
+            transform.position + new Vector3(0, 1, 0),
+            ((player.transform.position + new Vector3(0, 1f, 0)) - transform.position).normalized,
+            out hit,
+            playerDetectionDistance,
+            playerMask
+            );
+        if (hit.transform == null)
+        {
+            healthBarObject.SetActive(false);
+            detectedPlayer = false;
+
+            if (detectedPlayer && isBox)
+            {
+                if (boxOpenTrigger._isOpen)
+                {
+                    boxOpenTrigger.Trigger();
+                }
+            }
+            return;
+        }
+        if (!(hit.transform.tag == "Player"))
+        {
+            healthBarObject.SetActive(false);
+            detectedPlayer = false;
+
+            if (detectedPlayer && isBox)
+            {
+                if (boxOpenTrigger._isOpen)
+                {
+                    boxOpenTrigger.Trigger();
+                }
+            }
+            return;
+        }
+        detectedPlayer = true;
+
+        if (detectedPlayer && isBox)
+        {
+            if (!boxOpenTrigger._isOpen)
+            {
+                boxOpenTrigger.Trigger();
+            }
+        }
 
         foreach (var element in bulletEmitters)
         {
@@ -59,10 +113,11 @@ public class Enemy : MonoBehaviour
         //newPos.y += Mathf.Sin(Time.timeSinceLevelLoad)/80;
         //transform.position = newPos;
 
-        Vector3 newRot = transform.eulerAngles;
-        newRot.y += 1 * Time.deltaTime;
-        transform.eulerAngles = newRot;
+        //Vector3 newRot = transform.eulerAngles;
+        //newRot.y += 1 * Time.deltaTime;
+        //transform.eulerAngles = newRot;
 
+        healthBarObject.SetActive(true);
         healthBarTransform.anchoredPosition =
             RectTransformUtility.WorldToScreenPoint(
                 playerCamera, transform.position + new Vector3(0, 2, 0)
@@ -74,7 +129,7 @@ public class Enemy : MonoBehaviour
     {
         if (collider.gameObject.tag == "PBullet" && isMortal)
         {
-            damage(collider.gameObject.GetComponent<Bullet>().damage);
+            Damage(collider.gameObject.GetComponent<Bullet>().damage);
             collider.gameObject.SetActive(false);
             //print(name + " - TRIGGERED");
         }
@@ -85,20 +140,22 @@ public class Enemy : MonoBehaviour
         healthBarSlider.value = health / maxHealth;
     }
 
-    void damage(float dam)
+    public bool Damage(float damage)
     {
-        health = health - dam;
+        health = health - damage;
         UpdateHealthBar();
 
         if (health <= 0)
         {
             Death();
         }
+
+        return true;
     }
 
     void Death()
     {
-        Instantiate(onDeathParticle,transform.position,Quaternion.identity);
+        Instantiate(onDeathParticle, transform.position, Quaternion.identity);
         healthBarObject.SetActive(false);
         gameObject.SetActive(false);
 

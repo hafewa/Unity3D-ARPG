@@ -40,8 +40,10 @@ public class BulletSphere : BulletEmitter
             	if (currentBullet != null)
             	{
 					Vector3 newCircleRot = new Vector3(
-						transform.eulerAngles.x + (angleRingEnd - angleRingStart)/numberBulletsPerRing * x, 
-						transform.eulerAngles.y + (angleSphereEnd - angleSphereStart)/numberOfRings * i);
+						transform.eulerAngles.x + 
+						(angleRingEnd - angleRingStart)/numberBulletsPerRing * x, 
+						transform.eulerAngles.y + 
+						(angleSphereEnd - angleSphereStart)/numberOfRings * i);
 
 					currentBullet.GetComponent<Bullet>().ResetBasedOnRotation(pos,newCircleRot);
 				}
