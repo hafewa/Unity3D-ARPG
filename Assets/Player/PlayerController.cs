@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	PlayerData playerData;
 	PlayerUI playerUI;
 	BulletToPoint bulletToPoint;
+	BulletSphere bulletSphere;
 	Animator animator;
 
 	public float gravity;
@@ -59,6 +60,8 @@ public class PlayerController : MonoBehaviour {
 		charController = GetComponent<CharacterController>();
 
 		bulletToPoint = GetComponentInChildren<BulletToPoint>();
+		bulletSphere = GetComponentInChildren<BulletSphere>();
+
 		animator = GetComponentInChildren<Animator>();
 
 		_health = maxHealth;
