@@ -12,20 +12,23 @@ public class CameraController : MonoBehaviour
     public float mouseSensativityX = 5f;
     public float mouseSensativityY = 1f;
 
+    public float maxAngleUp;
+    public float maxAngleDown;
+
     public LayerMask mask;
     public float cameraSpeed;
     int isCameraInverted = -1;
 
     Vector3 camOriginPosLocal;
-	Vector3 rayCastPos;
-	public GameObject fakeCamera;
+    Vector3 rayCastPos;
+    public GameObject fakeCamera;
     public GameObject player;
     void Start()
     {
         currentCamera = GetComponent<Camera>();
 
         camOriginPosLocal = currentCamera.gameObject.transform.localPosition;
-		
+
         //StartCoroutine(fixCamera());
     }
 
@@ -35,7 +38,7 @@ public class CameraController : MonoBehaviour
     IEnumerator fixCamera()
     {
 
-		return null;
+        return null;
 
     }
     // Update is called once per frame
@@ -43,11 +46,31 @@ public class CameraController : MonoBehaviour
     {
         Vector3 newRotationCamera = currentCamera.transform.eulerAngles;
         newRotationCamera.x += Input.GetAxis("Mouse Y") * mouseSensativityY * isCameraInverted;
+
+        print("Sign = " + Mathf.Sign(newRotationCamera.x) + " Value: " + (newRotationCamera.x));
+
+        if (newRotationCamera.x > 180)
+        {
+            if (newRotationCamera.x < 360 - maxAngleUp)
+            {
+                print("Too small");
+                newRotationCamera.x = 360 - maxAngleUp;
+            }
+        }
+        else
+        {
+            if (newRotationCamera.x > maxAngleDown)
+            {
+                print("Too large");
+                newRotationCamera.x = maxAngleDown;
+            }
+        }
         currentCamera.transform.eulerAngles = newRotationCamera;
 
         Vector3 newRotationPoint = camPoint.transform.eulerAngles;
         newRotationPoint.y += Input.GetAxis("Mouse X") * mouseSensativityX;
         camPoint.transform.eulerAngles = newRotationPoint;
+
 
         Vector3 dir = player.transform.position - fakeCamera.transform.position;
         Debug.DrawLine(player.transform.position, player.transform.position + -dir.normalized * 10);
@@ -65,8 +88,8 @@ public class CameraController : MonoBehaviour
         }
         if (!canSeePlayer)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, player.transform.localPosition - new Vector3(0,2.4f,0), cameraSpeed * Time.deltaTime);
-           
+            transform.localPosition = Vector3.Lerp(transform.localPosition, player.transform.localPosition - new Vector3(0, 2.4f, 0), cameraSpeed * Time.deltaTime);
+
         }
         else
         {

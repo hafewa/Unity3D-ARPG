@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour {
         life = 0;
         //bRigidbody.position = pos;
 		bRigidbody.velocity = velocity * speed;
-        gameObject.transform.position = position + velocity;
+        gameObject.transform.position = position;
     }
 
     public void ResetBasedOnRotation(Vector3 position, Vector3 rotation)
@@ -79,7 +79,7 @@ public class Bullet : MonoBehaviour {
             gameObject.SetActive(false);
         }
 
-        if(other.tag == "Player")
+        if(other.tag == "Player" && gameObject.tag != "PBullet")
         {
             other.GetComponent<PlayerController>().Damage(damage);
             gameObject.SetActive(false);
