@@ -1967,12 +1967,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &270551779 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114936423782326534, guid: 53aa8fa657c6ae74fab8ea8cc72411ca,
-    type: 2}
-  m_PrefabInternal: {fileID: 1980214378}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &276851498 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1095869900140718, guid: 312a37f1a450e9f42ae51a60acb41fd6,
@@ -4109,7 +4103,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh20274
+  m_Name: pb_Mesh27418
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -7762,7 +7756,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh19716
+  m_Name: pb_Mesh26860
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -45521,6 +45515,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53aa8fa657c6ae74fab8ea8cc72411ca, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1980214379 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114936423782326534, guid: 53aa8fa657c6ae74fab8ea8cc72411ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1980214378}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1982436629 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4564667347320332, guid: 4630ec48b30d4e14d90a0a4a6c10d7d6,
@@ -45786,23 +45786,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114915300359983118, guid: add001069345e3f4995d634580de7d5e,
-        type: 2}
-      propertyPath: healthItemsUI
-      value: 
-      objectReference: {fileID: 585619129}
-    - target: {fileID: 114707201421985276, guid: add001069345e3f4995d634580de7d5e,
-        type: 2}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 270551779}
     - target: {fileID: 4583449514793194, guid: add001069345e3f4995d634580de7d5e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.732
+      value: -2.643
       objectReference: {fileID: 0}
     - target: {fileID: 4583449514793194, guid: add001069345e3f4995d634580de7d5e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.889
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 4583449514793194, guid: add001069345e3f4995d634580de7d5e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -45825,13 +45815,19 @@ Prefab:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4503010636843566, guid: add001069345e3f4995d634580de7d5e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.8890003
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503010636843566, guid: add001069345e3f4995d634580de7d5e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.732
+      value: -2.643
       objectReference: {fileID: 0}
+    - target: {fileID: 114915300359983118, guid: add001069345e3f4995d634580de7d5e,
+        type: 2}
+      propertyPath: healthItemsUI
+      value: 
+      objectReference: {fileID: 585619129}
+    - target: {fileID: 114707201421985276, guid: add001069345e3f4995d634580de7d5e,
+        type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1980214379}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: add001069345e3f4995d634580de7d5e, type: 2}
   m_IsPrefabParent: 0

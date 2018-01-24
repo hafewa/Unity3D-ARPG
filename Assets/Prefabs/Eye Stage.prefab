@@ -2008,9 +2008,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isShooting: 0
   bulletManager: {fileID: 114651063802743326}
-  BulletManager2: {fileID: 0}
+  BulletManager2: {fileID: 114716278108062626}
   bulletTwoChance: 0.5
-  randomBullet: 0
+  randomBullet: 1
   bulletDelay: 0.3
   numberBulletsPerBurst: 20
   angleStart: 0
@@ -2071,7 +2071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
@@ -2097,7 +2097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
@@ -2200,7 +2200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
@@ -2277,7 +2277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
@@ -2303,7 +2303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
@@ -2421,7 +2421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
@@ -2447,7 +2447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
@@ -2486,7 +2486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 100
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,

@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			print(gameObject.name);
+			//print(gameObject.name);
 			GameManager.currentCheckpoint = gameObject.name;
 		}
 	}

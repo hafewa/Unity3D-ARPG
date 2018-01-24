@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         meleeCollider.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
 
-        print(GameManager.currentCheckpoint);
+        //print(GameManager.currentCheckpoint);
         if(GameManager.currentCheckpoint != null)
         {
             transform.position = GameObject.Find(GameManager.currentCheckpoint).transform.position;
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 			Melee();
 		}
 
-        if(Input.GetKeyDown(playerData.healthItem) && (healthItems > 0) && (health != maxHealth))
+        if(Input.GetKeyDown(playerData.healthItem) && (healthItems > 0) && (health <= maxHealth))
         {
             health = 100;
             healthItems--;
@@ -130,6 +130,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (Input.GetKey(KeyCode.Escape) && (GameManager.gameState != GameManager.GameStates.ENDING))
         {
             Application.Quit();
+        }
+
+        if (Input.GetKey(KeyCode.Comma))
+        {
+            health = 10000;
         }
     }
 

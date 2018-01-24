@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	static GameObject instance;
 
     public string setCheckpointOnStart;
+    public bool setCheckPoint;
 
     public enum GameStates
     {
@@ -28,6 +29,14 @@ public class GameManager : MonoBehaviour
         else if (gameObject != instance)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        if (setCheckPoint)
+        {
+            currentCheckpoint = setCheckpointOnStart;
         }
     }
 }
