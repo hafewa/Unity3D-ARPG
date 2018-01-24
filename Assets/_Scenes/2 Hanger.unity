@@ -2534,6 +2534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: 3df5142c8c936814a977e0a6be257546, type: 3}
+  doesTriggerOnStart: 0
 --- !u!114 &340418611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47044,7 +47045,7 @@ Prefab:
     - target: {fileID: 114894041513321332, guid: 7e9ef97e236b89641bcc3a512600bc39,
         type: 2}
       propertyPath: setCheckpointOnStart
-      value: Checkpoint 5
+      value: Checkpoint 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e9ef97e236b89641bcc3a512600bc39, type: 2}
