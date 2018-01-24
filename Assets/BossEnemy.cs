@@ -19,6 +19,8 @@ public class BossEnemy : MonoBehaviour
     public GameObject stageOneExitPosition;
     public GameObject stageTwoPosition;
 
+    public GameObject[] eyes;
+
     enum BossEyesStates
     {
         IDLE,
@@ -36,6 +38,7 @@ public class BossEnemy : MonoBehaviour
     {
         health = maxHealth;
         transform.localPosition = new Vector3(0, 150, 0);
+        eyes = GameObject.FindGameObjectsWithTag("Enemy");
         stageTwoBody.SetActive(false);
     }
 
@@ -65,23 +68,41 @@ public class BossEnemy : MonoBehaviour
                 }
                 break;
             case BossEyesStates.STAGE_ONE_EXIT:
-                if (Move(stageOneExitPosition.transform.position,0.5f))
+                if (Move(stageOneExitPosition.transform.position, 0.5f))
                 {
                     bossState = BossEyesStates.STAGE_TWO_ENTRANCE;
                     stageTwoBody.SetActive(true);
                 }
                 break;
             case BossEyesStates.STAGE_TWO_ENTRANCE:
-                if (Move(stageTwoPosition.transform.position,8f))
+                if (Move(stageTwoPosition.transform.position, 8f))
                 {
                     bossState = BossEyesStates.STAGE_TWO;
                 }
                 break;
             case BossEyesStates.STAGE_TWO:
+
+                if (checkIfAllEyesDead())
+                {
+                    gameObject.SetActive(false);
+                }
                 break;
             default:
                 break;
         }
+    }
+
+    bool checkIfAllEyesDead()
+    {
+        foreach (var item in eyes)
+        {
+            if (item.activeInHierarchy)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     void UpdateHealthBar()

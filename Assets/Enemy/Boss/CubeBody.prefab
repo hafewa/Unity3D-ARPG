@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 33753402125365890}
   - component: {fileID: 135233435901451610}
   - component: {fileID: 23619898754516958}
+  - component: {fileID: 114367243548968218}
   m_Layer: 10
-  m_Name: Sphere
+  m_Name: Eye
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +55,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4186352000427148}
-  - component: {fileID: 114695481508017320}
   m_Layer: 10
   m_Name: CubeBody
   m_TagString: Untagged
@@ -267,6 +267,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1632370090790624, guid: 50634209c1eece04bb35f8b98a0d8138, type: 2}
   maxBullets: 50
+--- !u!114 &114367243548968218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119170986387992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1000
+  isTargetingPlayer: 0
+  isMortal: 1
+  healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
+    type: 2}
+  onDeathParticle: {fileID: 1152214126834450, guid: 7d9e7384e58bb0c42867a615d4e5eb71,
+    type: 2}
+  playerDetectionDistance: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  detectedPlayer: 0
+  isBox: 0
+  boxOpenTrigger: {fileID: 0}
+  isNotRaycasting: 1
 --- !u!114 &114609005413858784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,34 +308,9 @@ MonoBehaviour:
   BulletManager2: {fileID: 0}
   bulletTwoChance: 0
   randomBullet: 0
-  bulletDelay: 0.1
+  bulletDelay: 0.4
   _shootPosition: {x: 0, y: 0, z: 0}
   shootObject: {fileID: 1119170986387992}
---- !u!114 &114695481508017320
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1259701645514206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 1000
-  isTargetingPlayer: 0
-  isMortal: 1
-  healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
-    type: 2}
-  onDeathParticle: {fileID: 0}
-  playerDetectionDistance: 0
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  detectedPlayer: 0
-  isBox: 0
-  boxOpenTrigger: {fileID: 0}
-  isNotRaycasting: 1
 --- !u!135 &135233435901451610
 SphereCollider:
   m_ObjectHideFlags: 1

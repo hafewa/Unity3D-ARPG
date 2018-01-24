@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
         //gameObject.SetActive(false);
-		if (other.tag == "Ground" && ((isDestroyable || other.gameObject.layer != enemy) || tag == "PBullet"))
+		if (other.tag == "Ground" && isDestroyable)
         {
             gameObject.SetActive(false);
         }
