@@ -108,7 +108,7 @@ public class BossEnemy : MonoBehaviour
                 centerCircle.Shoot();
                 break;
             case BossEyesStates.DEATH:
-                Move(stageOneExitPosition.transform.position,0.01f);
+                Move(stageOneExitPosition.transform.position,0.1f);
                 break;
             default:
                 break;

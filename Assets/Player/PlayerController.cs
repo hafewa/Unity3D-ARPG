@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             playerUI.UpdateHealthBar();
         }
 
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape) && (GameManager.gameState != GameManager.GameStates.ENDING))
         {
             Application.Quit();
         }
