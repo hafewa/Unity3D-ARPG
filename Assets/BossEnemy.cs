@@ -10,25 +10,64 @@ public class BossEnemy : MonoBehaviour
     public float maxHealth;
     public Slider healthBar;
     public BossEye bossEye;
-	public BulletCircle centerCircle;
+    public BulletCircle centerCircle;
+
+    public float speed;
+    public GameObject stageOnePosition;
+
+    enum BossEyesStates
+    {
+        IDLE,
+        ENTRANCE,
+        STAGEONE,
+        STAGETWO
+    }
+
+    BossEyesStates bossState = BossEyesStates.ENTRANCE;
 
     void Start()
     {
-		healthBar.gameObject.SetActive(true);
         health = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-		bossEye.Shoot();
-		centerCircle.Shoot();
-        UpdateHealthBar();
+        switch (bossState)
+        {
+            case BossEyesStates.IDLE:
+                break;
+            case BossEyesStates.ENTRANCE:
+                transform.Translate((stageOnePosition.transform.position - transform.position).normalized * speed * Time.deltaTime);
+
+                if(Vector3.Distance(stageOnePosition.transform.position, transform.position) <= 0.1f)
+                {
+                    transform.position = stageOnePosition.transform.position;
+                    bossState = BossEyesStates.STAGEONE;
+                }
+                break;
+
+            case BossEyesStates.STAGEONE:
+                healthBar.gameObject.SetActive(true);
+                bossEye.Shoot();
+                centerCircle.Shoot();
+                UpdateHealthBar();
+
+                if(HealthPercent() <= 0.75)
+                {
+                    bossState = BossEyesStates.STAGETWO;
+                }
+
+                break;
+
+            default:
+                break;
+        }
     }
 
     void UpdateHealthBar()
     {
-        healthBar.value = health / maxHealth;
+        healthBar.value = HealthPercent();
     }
 
     public bool Damage(float damage)
@@ -44,8 +83,13 @@ public class BossEnemy : MonoBehaviour
         return true;
     }
 
+    float HealthPercent()
+    {
+        return health / maxHealth;
+    }
+
     void Death()
     {
-		healthBar.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(false);
     }
 }

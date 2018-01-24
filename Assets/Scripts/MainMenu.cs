@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 	LevelManager levelManager;
 
 	// Use this for initialization
-	void LateUpdate () 
+	void Start () 
 	{
 		levelManager = 
 			GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
@@ -20,6 +20,11 @@ public class MainMenu : MonoBehaviour {
 		exit.onClick.AddListener(ExitButton);
 
 		Cursor.lockState = CursorLockMode.None;
+
+		if (GameManager.currentCheckpoint != null)
+		{
+			start.gameObject.GetComponentInChildren<Text>().text = "\n Continue \n"; 
+		}
 	}
 
 	void StartButton()

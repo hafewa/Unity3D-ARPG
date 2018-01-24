@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	static public string currentCheckpoint;
-	GameObject instance;
+	static GameObject instance;
     void Awake()
     {
         if (instance == null)

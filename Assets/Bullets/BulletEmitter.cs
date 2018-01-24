@@ -6,6 +6,9 @@ using UnityEngine;
 public class BulletEmitter : MonoBehaviour 
 {
 	public BulletManager bulletManager;
+	public BulletManager BulletManager2;
+	public float bulletTwoChance;
+	public bool randomBullet;
 	public float bulletDelay = 0.1f;
 	protected float timer = 0;
 	protected bool canShoot = true;

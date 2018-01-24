@@ -109,9 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0d01c5a7827bc4f92ba2281c06f35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
-  speed: 2
-  maxLife: 5
+  damage: 10
+  speed: 10
+  maxLife: 10
   isDestroyable: 0
   enemy:
     serializedVersion: 2

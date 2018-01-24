@@ -20,7 +20,15 @@ public class BulletCircle : BulletEmitter
 
         for (int i = 0; i < numberBulletsPerBurst; ++i)
         {
-            obj = bulletManager.GetNextBullet();
+            if((Random.RandomRange(0f,1f) > bulletTwoChance) && randomBullet)
+            {
+                obj = BulletManager2.GetNextBullet();
+            }
+            else
+            {
+                obj = bulletManager.GetNextBullet();
+            }
+
             if (obj != null)
             {
                 Vector3 velocity = MathG.DegreeToVector2D(((newAngleEnd - newAngleStart) / numberBulletsPerBurst * i) + newAngleStart   , 1);
