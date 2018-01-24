@@ -163,8 +163,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115455107178324}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.781296, y: 0.14, z: -29.525986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.43, y: 0.5, z: -7.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4651867281757092}
@@ -392,6 +392,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294965465
   detectedPlayer: 0
+  isBox: 0
+  boxOpenTrigger: {fileID: 0}
+  isNotRaycasting: 0
 --- !u!114 &114319048372636472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,8 +419,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd30e1480c7b24783c427e3e774699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShooting: 0
+  bulletManager: {fileID: 0}
+  BulletManager2: {fileID: 0}
+  bulletTwoChance: 0
+  randomBullet: 0
   bulletDelay: 0.2
   _shootPosition: {x: 0, y: 0, z: 0}
+  shootObject: {fileID: 0}
 --- !u!114 &114858338784368680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -429,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9e01061bd5db04cb8a1943c99ab877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1854550711845848, guid: 494e349ee8bcf3447b95f6094877a007, type: 2}
+  bullet: {fileID: 1854550711845848, guid: 4b51471afaa2f1748bfad840dee97d0f, type: 2}
   maxBullets: 5000
 --- !u!136 &136663000781129372
 CapsuleCollider:

@@ -1078,9 +1078,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd30e1480c7b24783c427e3e774699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShooting: 0
   bulletManager: {fileID: 0}
+  BulletManager2: {fileID: 0}
+  bulletTwoChance: 0
+  randomBullet: 0
   bulletDelay: 0.3
   _shootPosition: {x: 0, y: 0, z: 0}
+  shootObject: {fileID: 0}
 --- !u!114 &114692722640936466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,7 +1097,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece570a495c51044ea259ff800f42448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShooting: 0
   bulletManager: {fileID: 0}
+  BulletManager2: {fileID: 0}
+  bulletTwoChance: 0
+  randomBullet: 0
   bulletDelay: 1
   numberBulletsPerRing: 20
   numberOfRings: 10
@@ -1114,7 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9e01061bd5db04cb8a1943c99ab877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1854550711845848, guid: 494e349ee8bcf3447b95f6094877a007, type: 2}
+  bullet: {fileID: 1854550711845848, guid: 4b51471afaa2f1748bfad840dee97d0f, type: 2}
   maxBullets: 5000
 --- !u!114 &114805737005701172
 MonoBehaviour:
@@ -1141,6 +1150,7 @@ MonoBehaviour:
   detectedPlayer: 0
   isBox: 1
   boxOpenTrigger: {fileID: 114067264700312900}
+  isNotRaycasting: 0
 --- !u!135 &135454969350386158
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -17654,15 +17654,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 4651867281757092, guid: 4630ec48b30d4e14d90a0a4a6c10d7d6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114819479223694154, guid: 4630ec48b30d4e14d90a0a4a6c10d7d6,
-        type: 2}
-      propertyPath: bulletDelay
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4630ec48b30d4e14d90a0a4a6c10d7d6, type: 2}
   m_IsPrefabParent: 0

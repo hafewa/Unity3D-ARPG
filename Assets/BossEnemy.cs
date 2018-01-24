@@ -19,7 +19,7 @@ public class BossEnemy : MonoBehaviour
     public GameObject stageOneExitPosition;
     public GameObject stageTwoPosition;
 
-    BossEyeStage[] eyesStages;
+    public BossEyeStage[] eyesStages;
 
     public AudioClip deathSong;
     enum BossEyesStates
@@ -41,8 +41,6 @@ public class BossEnemy : MonoBehaviour
     {
         health = maxHealth;
         transform.localPosition = new Vector3(0, 150, 0);
-
-        eyesStages = GetComponentsInChildren<BossEyeStage>();
         stageTwoBody.SetActive(false);
     }
 
@@ -95,6 +93,15 @@ public class BossEnemy : MonoBehaviour
                         item.hasMoved = true;
                     }
                 }
+                for (int i = 0; i < 3 ; i++)
+                {
+                    if(eyesStages[i].hasMoved)
+                    {
+                        eyesStages[i].gameObject.GetComponent<BulletCircle>().isShooting = false;
+                        eyesStages[i + 1].gameObject.GetComponent<BulletCircle>().isShooting = true;
+                    }
+                }
+
                 if (checkIfAllEyesDead())
                 {
                     bossState = BossEyesStates.STAGE_THREE;

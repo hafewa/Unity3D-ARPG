@@ -2006,10 +2006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac980f82c705f646a50edf4806b5dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isShooting: 1
+  isShooting: 0
   bulletManager: {fileID: 114651063802743326}
   BulletManager2: {fileID: 114716278108062626}
-  bulletTwoChance: 0.2
+  bulletTwoChance: 0.5
   randomBullet: 1
   bulletDelay: 0.3
   numberBulletsPerBurst: 20

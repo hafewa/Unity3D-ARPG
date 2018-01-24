@@ -29,7 +29,5 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        currentCheckpoint = setCheckpointOnStart;
     }
 }

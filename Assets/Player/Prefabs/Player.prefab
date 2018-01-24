@@ -1710,7 +1710,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1701556211770332}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.39, y: -0.42, z: -0.7}
+  m_LocalPosition: {x: -2.045, y: -0.42, z: -0.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4092953870637412}
@@ -2113,7 +2113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125538824198312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.71, y: -197.8, z: -260.69}
+  m_LocalPosition: {x: 3.929, y: 3.206, z: -2.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4575168902503056}
@@ -2724,7 +2724,7 @@ MonoBehaviour:
   mouseSensativityY: 5
   maxAngleUp: 85
   maxAngleDown: 85
-  cameraSpeed: 2
+  cameraSpeed: 4
   fakeCamera: {fileID: 1471098147310216}
   player: {fileID: 1232514512103786}
   maskForCamera:
@@ -2794,10 +2794,11 @@ MonoBehaviour:
   gravity: 1
   aimMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1025
   camera: {fileID: 1701556211770332}
   velocity: {x: 0, y: 0, z: 0}
   maxHealth: 100
+  healthItemsUI: {fileID: 0}
   meleeCooldown: 0.25
   meleeDuration: 0.1
 --- !u!114 &114960966000353406
@@ -2819,6 +2820,7 @@ MonoBehaviour:
   right: 100
   jump: 32
   sprint: 304
+  healthItem: 102
 --- !u!124 &124490741911831918
 Behaviour:
   m_ObjectHideFlags: 1
