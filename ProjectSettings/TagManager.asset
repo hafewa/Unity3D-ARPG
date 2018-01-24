@@ -12,6 +12,7 @@ TagManager:
   - Canvas
   - fakeCamera
   - Checkpoint
+  - BossBody
   layers:
   - Default
   - TransparentFX

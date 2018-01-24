@@ -2742,12 +2742,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd30e1480c7b24783c427e3e774699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShooting: 0
   bulletManager: {fileID: 0}
   BulletManager2: {fileID: 0}
   bulletTwoChance: 0
   randomBullet: 0
   bulletDelay: 0.05
   _shootPosition: {x: 0, y: 0, z: 0}
+  shootObject: {fileID: 0}
 --- !u!114 &114454897482222720
 MonoBehaviour:
   m_ObjectHideFlags: 1

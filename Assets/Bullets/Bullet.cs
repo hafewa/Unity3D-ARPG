@@ -74,24 +74,34 @@ public class Bullet : MonoBehaviour {
 		if (other.tag == "Ground" && isDestroyable)
         {
             gameObject.SetActive(false);
+            return;
+        }
+
+        if (other.tag == "BossBody" && tag == "PBullet")
+        {
+            gameObject.SetActive(false);
+            return;
         }
         
         if (other.tag == "PBullet" && gameObject.tag == "EBullet" && isDestroyable)
         {
             other.gameObject.SetActive(false);
             gameObject.SetActive(false);
+            return;
         }
 
         if(other.tag == "Enemy" && gameObject.tag == "PBullet")
         {
             other.GetComponent<IDamageable>().Damage(damage);
             gameObject.SetActive(false);
+            return;
         }
 
         if(other.tag == "Player" && gameObject.tag == "EBullet")
         {
             other.GetComponent<PlayerController>().Damage(damage);
             gameObject.SetActive(false);
+            return;
         }
 	}
 

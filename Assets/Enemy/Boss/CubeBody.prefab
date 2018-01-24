@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4186352000427148}
   m_Layer: 10
   m_Name: CubeBody
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,12 +278,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db7c62d37024346af704036e87fe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 250
   isTargetingPlayer: 0
   isMortal: 1
   healthBarPrefab: {fileID: 1812959340364866, guid: a21e94902842bf44da7be94a46ba410f,
     type: 2}
-  onDeathParticle: {fileID: 1152214126834450, guid: 7d9e7384e58bb0c42867a615d4e5eb71,
+  onDeathParticle: {fileID: 1152214126834450, guid: 1909d2e5ac65c3b408a49c44e060ebfb,
     type: 2}
   playerDetectionDistance: 0
   playerMask:

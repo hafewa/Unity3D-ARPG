@@ -5,7 +5,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	static public string currentCheckpoint;
+    static public GameStates gameState;
+
 	static GameObject instance;
+
+    public enum GameStates
+    {
+        RUNNING,
+        ENDING,
+        EXITING
+    }
+
     void Awake()
     {
         if (instance == null)

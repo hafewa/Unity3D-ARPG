@@ -19,7 +19,7 @@ public class BossEnemy : MonoBehaviour
     public GameObject stageOneExitPosition;
     public GameObject stageTwoPosition;
 
-    public GameObject[] eyes;
+    BossEyeStage[] eyesStages;
 
     enum BossEyesStates
     {
@@ -28,7 +28,9 @@ public class BossEnemy : MonoBehaviour
         STAGE_ONE,
         STAGE_ONE_EXIT,
         STAGE_TWO_ENTRANCE,
-        STAGE_TWO
+        STAGE_TWO,
+        STAGE_THREE,
+        DEATH
     }
 
     [SerializeField]
@@ -38,7 +40,8 @@ public class BossEnemy : MonoBehaviour
     {
         health = maxHealth;
         transform.localPosition = new Vector3(0, 150, 0);
-        eyes = GameObject.FindGameObjectsWithTag("Enemy");
+
+        eyesStages = GetComponentsInChildren<BossEyeStage>();
         stageTwoBody.SetActive(false);
     }
 
@@ -60,10 +63,10 @@ public class BossEnemy : MonoBehaviour
                 healthBar.gameObject.SetActive(true);
                 bossEye.Shoot();
                 centerCircle.Shoot();
-                UpdateHealthBar();
 
                 if (HealthPercent() <= 0.75)
                 {
+                    healthBar.gameObject.SetActive(false);
                     bossState = BossEyesStates.STAGE_ONE_EXIT;
                 }
                 break;
@@ -72,6 +75,8 @@ public class BossEnemy : MonoBehaviour
                 {
                     bossState = BossEyesStates.STAGE_TWO_ENTRANCE;
                     stageTwoBody.SetActive(true);
+                    headTracking.isTracking = false;
+                    headTracking.gameObject.transform.eulerAngles = new Vector3(-90, 0, 0);
                 }
                 break;
             case BossEyesStates.STAGE_TWO_ENTRANCE:
@@ -81,11 +86,28 @@ public class BossEnemy : MonoBehaviour
                 }
                 break;
             case BossEyesStates.STAGE_TWO:
-
+                foreach (var item in eyesStages)
+                {
+                    if (item.isAllEyesDead && !item.hasMoved)
+                    {
+                        gameObject.transform.Translate(new Vector3(0, -15, 0));
+                        item.hasMoved = true;
+                    }
+                }
                 if (checkIfAllEyesDead())
                 {
-                    gameObject.SetActive(false);
+                    bossState = BossEyesStates.STAGE_THREE;
+                    headTracking.isTracking = true;
+                    healthBar.gameObject.SetActive(true);
+                    health = maxHealth * 0.25f;
                 }
+                break;
+            case BossEyesStates.STAGE_THREE:
+                bossEye.Shoot();
+                centerCircle.Shoot();
+                break;
+            case BossEyesStates.DEATH:
+                Move(stageOneExitPosition.transform.position,0.01f);
                 break;
             default:
                 break;
@@ -94,14 +116,13 @@ public class BossEnemy : MonoBehaviour
 
     bool checkIfAllEyesDead()
     {
-        foreach (var item in eyes)
+        foreach (var item in eyesStages)
         {
-            if (item.activeInHierarchy)
+            if (!item.isAllEyesDead)
             {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -131,6 +152,9 @@ public class BossEnemy : MonoBehaviour
     void Death()
     {
         healthBar.gameObject.SetActive(false);
+        bossEye.gameObject.SetActive(false);
+        bossState = BossEyesStates.DEATH;
+        GameManager.gameState = GameManager.GameStates.ENDING;
     }
 
     bool Move(Vector3 pos, float speedMod = 1f)

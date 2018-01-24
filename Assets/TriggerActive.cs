@@ -20,6 +20,6 @@ public class TriggerActive : MonoBehaviour, ITriggerable
 
 	void Activate()
 	{
-		gameObject.SetActive(!startActive);
+		gameObject.SetActive(!gameObject.activeInHierarchy);
 	}
 }
