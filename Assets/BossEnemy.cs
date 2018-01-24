@@ -11,23 +11,32 @@ public class BossEnemy : MonoBehaviour
     public Slider healthBar;
     public BossEye bossEye;
     public BulletCircle centerCircle;
+    public PointTracking headTracking;
 
+    public GameObject stageTwoBody;
     public float speed;
     public GameObject stageOnePosition;
+    public GameObject stageOneExitPosition;
+    public GameObject stageTwoPosition;
 
     enum BossEyesStates
     {
         IDLE,
-        ENTRANCE,
-        STAGEONE,
-        STAGETWO
+        STAGE_ONE_ENTRANCE,
+        STAGE_ONE,
+        STAGE_ONE_EXIT,
+        STAGE_TWO_ENTRANCE,
+        STAGE_TWO
     }
 
-    BossEyesStates bossState = BossEyesStates.ENTRANCE;
+    [SerializeField]
+    BossEyesStates bossState = BossEyesStates.STAGE_ONE_ENTRANCE;
 
     void Start()
     {
         health = maxHealth;
+        transform.localPosition = new Vector3(0, 150, 0);
+        stageTwoBody.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,29 +46,39 @@ public class BossEnemy : MonoBehaviour
         {
             case BossEyesStates.IDLE:
                 break;
-            case BossEyesStates.ENTRANCE:
-                transform.Translate((stageOnePosition.transform.position - transform.position).normalized * speed * Time.deltaTime);
-
-                if(Vector3.Distance(stageOnePosition.transform.position, transform.position) <= 0.1f)
+            case BossEyesStates.STAGE_ONE_ENTRANCE:
+                if (Move(stageOnePosition.transform.position))
                 {
-                    transform.position = stageOnePosition.transform.position;
-                    bossState = BossEyesStates.STAGEONE;
+                    bossState = BossEyesStates.STAGE_ONE;
                 }
                 break;
 
-            case BossEyesStates.STAGEONE:
+            case BossEyesStates.STAGE_ONE:
                 healthBar.gameObject.SetActive(true);
                 bossEye.Shoot();
                 centerCircle.Shoot();
                 UpdateHealthBar();
 
-                if(HealthPercent() <= 0.75)
+                if (HealthPercent() <= 0.75)
                 {
-                    bossState = BossEyesStates.STAGETWO;
+                    bossState = BossEyesStates.STAGE_ONE_EXIT;
                 }
-
                 break;
-
+            case BossEyesStates.STAGE_ONE_EXIT:
+                if (Move(stageOneExitPosition.transform.position,0.5f))
+                {
+                    bossState = BossEyesStates.STAGE_TWO_ENTRANCE;
+                    stageTwoBody.SetActive(true);
+                }
+                break;
+            case BossEyesStates.STAGE_TWO_ENTRANCE:
+                if (Move(stageTwoPosition.transform.position,8f))
+                {
+                    bossState = BossEyesStates.STAGE_TWO;
+                }
+                break;
+            case BossEyesStates.STAGE_TWO:
+                break;
             default:
                 break;
         }
@@ -91,5 +110,16 @@ public class BossEnemy : MonoBehaviour
     void Death()
     {
         healthBar.gameObject.SetActive(false);
+    }
+
+    bool Move(Vector3 pos, float speedMod = 1f)
+    {
+        transform.Translate((pos - transform.position).normalized * speed * speedMod * Time.deltaTime);
+        if (Vector3.Distance(pos, transform.position) <= 1.5f)
+        {
+            transform.position = pos;
+            return true;
+        }
+        return false;
     }
 }

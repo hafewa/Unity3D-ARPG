@@ -171,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983045895934352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 149.7, z: 0}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4492917653556552}
@@ -463,12 +463,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a317e5733b3f24c8f0727b34111ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 10000
   healthBar: {fileID: 0}
   bossEye: {fileID: 114490413655780934}
   centerCircle: {fileID: 114808578905572766}
-  speed: 10
+  headTracking: {fileID: 114639880149481606}
+  stageTwoBody: {fileID: 0}
+  speed: 20
   stageOnePosition: {fileID: 0}
+  stageOneExitPosition: {fileID: 0}
+  stageTwoPosition: {fileID: 0}
+  bossState: 1
 --- !u!114 &114639880149481606
 MonoBehaviour:
   m_ObjectHideFlags: 1

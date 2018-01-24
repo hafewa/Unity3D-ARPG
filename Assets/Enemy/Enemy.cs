@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool isBox;
     public TriggerBOX boxOpenTrigger;
 
+    public bool isNotRaycasting;
+
 
     // Use this for initialization
     void Start()
@@ -50,46 +52,48 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
-        Debug.DrawRay(
-            transform.position + new Vector3(0, 1, 0),
-            ((player.transform.position + new Vector3(0, 1f, 0)) - transform.position).normalized);
-
-        RaycastHit hit;
-        Physics.Raycast(
-            transform.position + new Vector3(0, 1, 0),
-            ((player.transform.position + new Vector3(0, 1f, 0)) - transform.position).normalized,
-            out hit,
-            playerDetectionDistance,
-            playerMask
-            );
-        if (hit.transform == null)
+        if (!isNotRaycasting)
         {
-            healthBarObject.SetActive(false);
-            detectedPlayer = false;
+            Debug.DrawRay(
+    transform.position + new Vector3(0, 1, 0),
+    ((player.transform.position + new Vector3(0, 1f, 0)) - transform.position).normalized);
 
-            if (detectedPlayer && isBox)
+            RaycastHit hit;
+            Physics.Raycast(
+                transform.position + new Vector3(0, 1, 0),
+                ((player.transform.position + new Vector3(0, 1f, 0)) - transform.position).normalized,
+                out hit,
+                playerDetectionDistance,
+                playerMask
+                );
+            if (hit.transform == null)
             {
-                if (boxOpenTrigger._isOpen)
-                {
-                    boxOpenTrigger.Trigger();
-                }
-            }
-            return;
-        }
-        if (!(hit.transform.tag == "Player"))
-        {
-            healthBarObject.SetActive(false);
-            detectedPlayer = false;
+                healthBarObject.SetActive(false);
+                detectedPlayer = false;
 
-            if (detectedPlayer && isBox)
-            {
-                if (boxOpenTrigger._isOpen)
+                if (detectedPlayer && isBox)
                 {
-                    boxOpenTrigger.Trigger();
+                    if (boxOpenTrigger._isOpen)
+                    {
+                        boxOpenTrigger.Trigger();
+                    }
                 }
+                return;
             }
-            return;
+            if (!(hit.transform.tag == "Player"))
+            {
+                healthBarObject.SetActive(false);
+                detectedPlayer = false;
+
+                if (detectedPlayer && isBox)
+                {
+                    if (boxOpenTrigger._isOpen)
+                    {
+                        boxOpenTrigger.Trigger();
+                    }
+                }
+                return;
+            }
         }
         detectedPlayer = true;
 
