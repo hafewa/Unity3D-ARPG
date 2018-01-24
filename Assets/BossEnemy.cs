@@ -21,6 +21,7 @@ public class BossEnemy : MonoBehaviour
 
     BossEyeStage[] eyesStages;
 
+    public AudioClip deathSong;
     enum BossEyesStates
     {
         IDLE,
@@ -155,6 +156,7 @@ public class BossEnemy : MonoBehaviour
         healthBar.gameObject.SetActive(false);
         bossEye.gameObject.SetActive(false);
         bossState = BossEyesStates.DEATH;
+        GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>().Play(deathSong);
         GameManager.gameState = GameManager.GameStates.ENDING;
     }
 

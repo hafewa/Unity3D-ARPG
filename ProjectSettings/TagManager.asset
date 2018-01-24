@@ -13,6 +13,7 @@ TagManager:
   - fakeCamera
   - Checkpoint
   - BossBody
+  - MusicManager
   layers:
   - Default
   - TransparentFX

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface ITriggerable
+public interface ITriggerable
 {
 	bool Trigger();
 }
 
-interface IDamageable
+public interface IDamageable
 {
 	bool Damage(float damage);
 }
