@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/2 Hanger.unity
     guid: 82dc70e2acc4e36489c6803883f986fc
+  - enabled: 1
+    path: Assets/_Scenes/Prototype Open World.unity
+    guid: ab48a3be582d3c243a3e51d131b6ac0c

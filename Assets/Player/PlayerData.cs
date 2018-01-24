@@ -28,4 +28,5 @@ public class PlayerData : MonoBehaviour
 	public KeyCode right = KeyCode.D;
 	public KeyCode jump = KeyCode.Space;
 	public KeyCode sprint = KeyCode.LeftShift;
+	public KeyCode healthItem = KeyCode.F;
 }

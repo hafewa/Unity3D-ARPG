@@ -100,6 +100,7 @@ public class BossEnemy : MonoBehaviour
                     headTracking.isTracking = true;
                     healthBar.gameObject.SetActive(true);
                     health = maxHealth * 0.25f;
+                    UpdateHealthBar();
                 }
                 break;
             case BossEyesStates.STAGE_THREE:

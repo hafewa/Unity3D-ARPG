@@ -51,3 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92fd85f860e9b14c83afa5af2b91ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setCheckpointOnStart: Checkpoint 1

@@ -6,10 +6,12 @@ public class TriggerIfAllInactive : MonoBehaviour {
 
 	public GameObject[] objects;
 	public GameObject[] triggerObjects;
+	private bool isTriggered;
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if(isTriggered){return;}
 		foreach (var item in objects)
 		{
 			if(item.activeInHierarchy)
@@ -22,5 +24,6 @@ public class TriggerIfAllInactive : MonoBehaviour {
 		{
 			item.GetComponent<ITriggerable>().Trigger();
 		}
+		isTriggered = true;
 	}
 }

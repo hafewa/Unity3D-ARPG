@@ -85,6 +85,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4310657963793562}
+  - component: {fileID: 114626662929746924}
   m_Layer: 0
   m_Name: Lights
   m_TagString: Untagged
@@ -551,6 +552,20 @@ MonoBehaviour:
   - {fileID: 0}
   triggerObjects:
   - {fileID: 1243776229725640}
+  - {fileID: 1732754965016144}
+--- !u!114 &114626662929746924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732754965016144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe6bf169eecbbd438d0e3d4180956d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startActive: 0
+  activationTime: 0
 --- !u!114 &114647591861260774
 MonoBehaviour:
   m_ObjectHideFlags: 1

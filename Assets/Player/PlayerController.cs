@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -44,6 +45,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
 
     bool wasDamaged = false;
+    int healthItems = 3;
+    public Text healthItemsUI;
 
     bool bForward;
     bool bBack;
@@ -97,7 +100,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             //Debug.DrawRay(camera.transform.position,camera.transform.forward * 100,Color.red,1);
             RaycastHit hit;
-            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 300, aimMask))
+            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 1000, aimMask))
             {
                 bulletToPoint.ShootPosition = hit.point;
                 bulletToPoint.Shoot();
@@ -115,6 +118,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 		{
 			Melee();
 		}
+
+        if(Input.GetKeyDown(playerData.healthItem) && (healthItems > 0) && (health != maxHealth))
+        {
+            health = 100;
+            healthItems--;
+            healthItemsUI.text = healthItems.ToString();
+            playerUI.UpdateHealthBar();
+        }
 
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -242,7 +253,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (_health <= 0)
         {
             _health = 0;
-            LevelManager.LoadScene(0);
+
+            if(GameManager.gameState == GameManager.GameStates.ENDING)
+            {
+                LevelManager.LoadScene(2);
+            }
+            else
+            {
+                LevelManager.LoadScene(0);
+            }
         }
 
         return true;
