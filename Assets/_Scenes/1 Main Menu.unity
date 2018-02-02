@@ -1128,16 +1128,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 114894041513321332, guid: 7e9ef97e236b89641bcc3a512600bc39,
-        type: 2}
-      propertyPath: setCheckpointOnStart
-      value: Checkpoint 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114894041513321332, guid: 7e9ef97e236b89641bcc3a512600bc39,
-        type: 2}
-      propertyPath: setCheckPoint
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e9ef97e236b89641bcc3a512600bc39, type: 2}
   m_IsPrefabParent: 0
